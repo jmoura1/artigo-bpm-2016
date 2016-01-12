@@ -45,11 +45,11 @@ Test automation BPMS applications: \\ an Experience Report}
 % their surnames. This ensures that the names appear correctly in
 % the running heads and the author index.
 %
-\author{Jessica Lasch de Moura
+\author{Jéssica Lasch de Moura
 %\thanks{Please note that the LNCS Editorial assumes that all authors have used
 %the western naming convention, with given names preceding surnames. This determines
 %the structure of the names in the running heads and the author index.}%
-\and Andrea Schwertner Charao}
+\and Andrea Schwertner Charão}
 %
 \authorrunning{
 Test automation BPMS applications: \\ an Experience Report}
@@ -128,7 +128,7 @@ Whereas BPMS applications are usually Web-based systems, it can be assumed that 
 The target application of this work refers to a common process in higher education institutions: the appreciation of complementary activities, ie, activities that form the flexible part of the undergraduate curriculum (participation in lectures, events, projects , etc.). In a previous work ~\cite{sbsi2013}, presented the modeling, implementation and deployment of this process. Their representation in BPMN, in Figure \ref{fig:diagrama}, reveals a total of 11 tasks span responsibility 5 divisions.
 %citando trabalho em portugues
 
-In previous work, we implemented the process with the Bonita BPM tool \footnote{Bonita BPM (formerly Bonita Open Solution). Available at:. Www.bonitasoft.com}, an open source BPMS recognized in the corporate world ~\cite{forrester}. The resulting application has several Web forms for each division of responsibility, being the first one for the data population by the student. According to the type of complementary activities, the flow is directed to those responsible for the assessment and validation of activity. Note, in Figure \ref{fig:diagrama}, the process has several gateways, which leads to over 15 possible paths in the process.
+In previous work, we implemented the process with the Bonita BPM tool \footnote{Bonita BPM (formerly Bonita Open Solution). Available at: www.bonitasoft.com}, an open source BPMS recognized in the corporate world ~\cite{forrester}. The resulting application has several Web forms for each division of responsibility, being the first one for the data population by the student. According to the type of complementary activities, the flow is directed to those responsible for the assessment and validation of activity. Note, in Figure \ref{fig:diagrama}, the process has several gateways, which leads to over 15 possible paths in the process.
 
 \begin{figure}[ht]
 \centering
@@ -167,9 +167,19 @@ Load tests on web applications is typically performed by generating multiple HTT
 %Um teste da aplicação com JMeter consiste em quatro etapas: capturar as requisições HTTP, exportar as requisições (formato .jrxml para JMeter), configurar o plano de teste e, por fim, executar o teste no JMeter. A aplicação gera diferentes requisições HTTP que precisam ser identificadas e interpretadas, para serem reproduzidas automaticamente. O emprego de tecnologias Web com processamento assíncrono, do lado do cliente, pode dificultar esta etapa, pois uma ação do usuário pode não gerar imediatamente uma requisição ao servidor. Além disso, em aplicações de BPMS, diversos usuários atuam sobre diferentes tarefas de um mesmo processo, de modo que as requisições HTTP carregam chaves identificando usuários e processos.
 An application test with JMeter consists of four steps: capture HTTP requests, export requests (.jrxml format for JMeter), set up the test plan and, finally, run the test in JMeter. The application generates different HTTP requests that need to be identified and interpreted to be played automatically. The use of Web technologies with asynchronous processing, client-side, can hinder this step because a user action can not immediately generate a request to the server. Moreover, in applications BPMS, many users act on different tasks in a same process, so that the HTTP requests that carry user identifying keys and processes.
 
-
 %No caso da aplicação criada com Bonita, verificou-se que existe uma chave identificadora de sessão que é gerada no momento em que usuário acessa o sistema e outra chave identificadora de instância, ou seja, que identifica cada execução do processo como única, sendo criada pelo servidor no momento em que o usuário inicia o processo. Para executar os testes, portanto, foi necessário localizar a requisição em que essas chaves são geradas e utilizar a ferramenta ``Extrator de Expressão Regular'' do JMeter para obter seus valores. Já na aplicação criada com Activiti, foi inviável identificar a requisição em que as chaves são geradas, pois não há uma requisição cujo retorno (resposta do servidor) contenha valores de chaves. Esta situação leva a crer que a geração das chaves identificadoras é feita internamente pelo BPMS, ou seja, não em uma requisição HTTP e, por consequência, esta não pode ser capturada e reproduzida no JMeter.
 In the case of application created with Bonita, it was found that there is a session identifier key that is generated at the time user accesses the system and other instance identifying key, that is, identifies each execution of the process as only being created by the server when the user initiates the process. To run the tests, so it was necessary to locate the request in which these keys are generated and use the "Regular Expression Extractor" tool of JMeter to get their values. In the application created with Activiti, it was impossible to identify the request in which the keys are generated, as there is not a request whose return (server response) contains key values. This suggests that the generation of the identifying key is made internally by the BPMS, ie not in an HTTP request and therefore this can not be captured and reproduced in JMeter.
+
+%Novos testes de carga com selenium + TestNG
+%Decidiu-se então realizar o teste de carga com as versões mais recentes dos BPMS. Começou-se com os testes na versão 7.1.2,  a captura e análise das requisições foi realizada da mesma forma dos testes anteriores no entanto, mesmo identificando e substituindo as chaves identificadores os testes não eram executados com sucesso. De fato, algumas etapas que deveriam ser reporoduzidas não eram executadas como, por exemplo: Iniciar um processo ou iniciar uma tarefa. Isso leva crer que algumas requisições não são capturadas ou algumas etapas não são executadas de uma forma que pode ser capturada via uma requisição http, problema semelhante ao que aconteceu nos teste com a versão xx do Activiti. Executando o teste de carga utilizando o JMeter com a versão 5.19 do Activiti e ocorreram os mesmo problemas observados na versão 5.14.
+% - também tentei com a versão 6.5.4 e foi pior
+% - Testes funcionais funcionaram em todas...
+% - colocar o teste funcional antes/inverter?
+%Como os testes funcionais apresentaram sucesso em todas as versões testadas de ambas as ferramentas optou-se por verificar uma forma de realizar o teste de carga através das capturas realizadas com o Selenium. Para isso, optou-se por usar a ferramenta TestNG\footnote{TestNG. Available at:. www.testng.org} que é um framework comumente utilizado para automatizar testes com o Selenium ~\cite{bindal2014test}. O TestNG possui uma notação que permite escolher o número de vezes que o teste deve ser executado e o número de threads, assim é possível simular a execução de diversas threads simultaneamente. 
+%continuar e traduzir
+
+
+
 
 \subsubsection{Load Test Results}
 
@@ -300,11 +310,15 @@ de~Moura, J.~L. et~al.: Gestão de processos de negócio em curso de sistemas de
 \bibitem{forrester}
 Forrester Research.: The forrester wave: {BPM} suites, {Q1} (2013)
 
+\bibitem{bindal2014test}
+Bindal, P. and Gupta, S.: Test Automation Selenium WebDriver using TestNG. In {\em Journal of Engineering Computers \& Applied Sciences}, pp.
+  18--40, (2014)
+
 \bibitem{graham2012experiences}
-Graham, D. e Fewster, M.: Experiences of Test Automation: Case Studies of Software Test Automation. Addison-Wesley (2012)
+Graham, D. and Fewster, M.: Experiences of Test Automation: Case Studies of Software Test Automation. Addison-Wesley (2012)
 
 \bibitem{myers}
-Myers, G.~J. e Sandler, C.: The Art of Software Testing. John Wiley \& Sons, (2011)
+Myers, G.~J. and Sandler, C.: The Art of Software Testing. John Wiley \& Sons, (2011)
 
 \bibitem{aalst2013survey}
 van~der Aalst, W. M.~P.: Business process management: A comprehensive survey. {\em ISRN Software Engineering}, 2013(507984)
