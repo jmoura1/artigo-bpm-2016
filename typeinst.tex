@@ -92,7 +92,7 @@ Business Process Management has aroused the interest of companies and the scient
 
 %Dentre os diversos BPMS disponíveis atualmente, é comum encontrar ferramentas com suporte à modelagem, configuração e execução de processos de negócio. Em muitos casos, os BPMS abreviam o desenvolvimento de software, entregando aplicações Web completas para execução dos processos, usando tecnologias atuais e exigindo pouca escrita de código. Por outro lado, algumas tarefas como verificação e testes ainda são consideradas um desafio nesta área~\cite{aalst2013survey}. Em particular, o teste automatizado de aplicações de BPMS é pouco abordado, tanto pela comunidade da área de BPM~\cite{weske} como da área de testes de software~\cite{graham2012experiences}. 
 
-Among the many BPMS currently available, it is common to find tools that support modeling, configuration and execution of business processes. In many cases, BPMS shorten the software development, delivering complete Web applications for process execution, using current technologies and requiring little code writing. On the other hand, some tasks such as checking and tests are still considered a challenge in this area ~\cite{aalst2013survey}. In particular, the automated test of BPMS applications is rarely addressed by both the BPM community ~\cite{weske} as software testing area~\cite{graham2012experiences.
+Among the many BPMS currently available, it is common to find tools that support modeling, configuration and execution of business processes. In many cases, BPMS shorten the software development, delivering complete Web applications for process execution, using current technologies and requiring little code writing. On the other hand, some tasks such as checking and tests are still considered a challenge in this area ~\cite{aalst2013survey}. In particular, the automated test of BPMS applications is rarely addressed by both the BPM community ~\cite{weske} as software testing area~\cite{graham2012experiences}.
  
 %No entanto, a falta de automação nos testes pode levar a problemas durante a implementação e execução de processos de negócio, ainda mais quando se tratam de processos com muitas tarefas e fluxos de trabalho, que levam facilmente a explosões combinatórias.
 However, the lack of automation in testing can lead to problems during implementation and execution of business processes, especially when treating processes with many tasks and workflows, which easily lead to combinatorial explosion.
@@ -128,7 +128,7 @@ Whereas BPMS applications are usually Web-based systems, it can be assumed that 
 The target application of this work refers to a common process in higher education institutions: the appreciation of complementary activities, ie, activities that form the flexible part of the undergraduate curriculum (participation in lectures, events, projects , etc.). In a previous work ~\cite{sbsi2013}, presented the modeling, implementation and deployment of this process. Their representation in BPMN, in Figure \ref{fig:diagrama}, reveals a total of 11 tasks span responsibility 5 divisions.
 %citando trabalho em portugues
 
-In previous work, we implemented the process with the Bonita BPM tool \footnote{Bonita BPM (formerly Bonita Open Solution). Available at: www.bonitasoft.com}, an open source BPMS recognized in the corporate world ~\cite{forrester}. The resulting application has several Web forms for each division of responsibility, being the first one for the data population by the student. According to the type of complementary activities, the flow is directed to those responsible for the assessment and validation of activity. Note, in Figure \ref{fig:diagrama}, the process has several gateways, which leads to over 15 possible paths in the process.
+In previous work, we implemented the process with the Bonita BPM tool \footnote{Bonita BPM (formerly Bonita Open Solution). Available at: www.bonitasoft.com} in version 5.7.2, an open source BPMS recognized in the corporate world ~\cite{forrester}. The resulting application has several Web forms for each division of responsibility, being the first one for the data population by the student. According to the type of complementary activities, the flow is directed to those responsible for the assessment and validation of activity. Note, in Figure \ref{fig:diagrama}, the process has several gateways, which leads to over 15 possible paths in the process.
 
 \begin{figure}[ht]
 \centering
@@ -150,69 +150,16 @@ Among the analyzed tools (TIBCO\footnote{TIBCO. Available at: www.tibco.com}, Ac
 In addition, it was decided to deploy the same application using other BPMS in order to broaden the experience and possibly identify similarities and differences in automated test implementations with different BPMS. Yet it had intended to elect the best BPMS, but to assess support for both tests.
 
 %A ferramenta escolhida foi Activiti, um BPMS baseado em tecnologias Java, assim como Bonita, permitindo trabalhar com as mesmas tecnologias do lado servidor (Tomcat e MySQL, no caso em questão). Esse BPMS também trabalha com a mesma versão da notação BPMN usada no Bonita, permitindo importar na íntegra o processo originalmente criado. Os formulários Web criados com ajuda do Bonita, no entanto, não puderam ser importados e tiveram de ser recriados com Activiti.
-The tool chosen was Activiti, a BPMS based on Java technologies, like Bonita, allowing you to work with the same server-side technologies (Tomcat and MySQL, in this case). This BPMS also works with the same version of the BPMN notation used in Bonita, allowing import in full the process originally created. Web forms created with Bonita's help, however, could not be imported and had to be recreated with Activiti.
+The tool chosen was Activiti, a BPMS based on Java technologies, like Bonita, allowing you to work with the same server-side technologies (Tomcat and MySQL, in this case). At the time, the latest version of the application was 5.14. This BPMS also works with the same version of the BPMN notation used in Bonita, allowing import in full the process originally created. Web forms created with Bonita's help, however, could not be imported and had to be recreated with Activiti.
 
-\section{Description and Performance of tests}\label{s:testes}
+\section{Description and Execution of tests}\label{s:testes}
 
 %No planejamento de testes automatizados, priorizou-se o teste de aspectos que de fato revelaram problemas durante a implantação, no trabalho precedente. Os testes escolhidos foram: (a) testes de carga, que são um tipo de teste de desempenho, visando avaliar o comportamento do sistema frente a um grande número de solicitações e (b) testes funcionais, a fim de verificar as saídas do sistema produzidas a partir de entradas pré-definidas. Nenhum destes tipos de teste possui suporte nos BPMS Bonita e Activiti, que incluem somente funcionalidades limitadas de simulação e depuração de execução dos processos. Embora o Activiti citasse suporte a testes de unidade, não explorou-se esta opção por entender-se que seria menos prioritária frente aos problemas observados.
-In planning automated tests, priority was given to the test of aspects that in fact revealed problems during deployment, in previous work. The selected tests were: (a) load tests, which are one type of performance testing, to evaluate the opposite behavior of the system to a large number of requests, and (b) functional tests to verify the produced system output from pre-defined inputs. None of these types of tests is supported in BPMS Bonita and Activiti, which include only limited functionality simulation and debugging process execution. Although Activiti quoting support unit tests not be exploited for this option to be understood that priority would be less compared to the observed problems.
+In planning automated tests, priority was given to the test of aspects that in fact revealed problems during deployment, in previous work. The selected tests were: (a) functional tests to verify the produced system output from pre-defined inputs and, (b) load tests, which are one type of performance testing, to evaluate the opposite behavior of the system to a large number of requests. None of these types of tests is supported in BPMS Bonita and Activiti, which include only limited functionality simulation and debugging process execution. Although Activiti quoting support unit tests not be exploited for this option to be understood that priority would be less compared to the observed problems.
+
 %Assim, realizou-se um levantamento de ferramentas destinadas ao teste de aplicações Web e selecionou-se as julgadas mais promissoras, antes de partir-se para o detalhamento e execução dos testes. Os \emph{scripts} que configuram os testes estão disponíveis para consulta em http://www.inf.ufsm.br/~andrea/bpmtest-scripts.zip.
 Thus, there was a survey of tools intended for Web application testing and was selected the most promising judged before departing to the detailing and execution of tests. The scripts that configure the tests are available for consultation in http://www.inf.ufsm.br/~andrea/bpmtest-scripts.zip.
 
-\subsection{Load Tests}
-
-%Testes de carga em aplicações Web são tipicamente realizados gerando-se múltiplas requisições HTTP ao servidor, de forma controlada. Para isso, uma etapa crítica é a identificação das requisições que devem ser reproduzidas. Existem diversas ferramentas que se propõem a facilitar este tipo de teste, dentre as quais pode-se citar: JMeter\footnote{Apache JMeter. Disponível em: www.jmeter.apache.org.}, The Grinder\footnote{The Grinder. Disponível em: www.grinder.sourceforge.net/.} e WebLOAD\footnote{WebLOAD. Disponível em: radview.com/webload-download/.}. Todas são ferramentas \emph{open source} e possuem diversas opções, mas escolheu-se a ferramenta JMeter pela sua funcionalidade ``proxy server'' que é de grande auxílio à captura das requisições.
-Load tests on web applications is typically performed by generating multiple HTTP requests to the server in a controlled manner. For this, a critical step is to identify the requests that should be played. There are several tools that purport to facilitate this type of testing, among which we can mention: JMeter\footnote{Apache JMeter. . Available at: www.jmeter.apache.org}, The Grinder\footnote{The Grinder. Available at: www.grinder.sourceforge.net/} and WebLOAD\footnote{WebLOAD. Available at: www.radview.com/webload-download/}. All tools are open source and have several options, but chose to JMeter tool for its functionality "proxy server" which is a great help to the capture of requests.
-
-%Um teste da aplicação com JMeter consiste em quatro etapas: capturar as requisições HTTP, exportar as requisições (formato .jrxml para JMeter), configurar o plano de teste e, por fim, executar o teste no JMeter. A aplicação gera diferentes requisições HTTP que precisam ser identificadas e interpretadas, para serem reproduzidas automaticamente. O emprego de tecnologias Web com processamento assíncrono, do lado do cliente, pode dificultar esta etapa, pois uma ação do usuário pode não gerar imediatamente uma requisição ao servidor. Além disso, em aplicações de BPMS, diversos usuários atuam sobre diferentes tarefas de um mesmo processo, de modo que as requisições HTTP carregam chaves identificando usuários e processos.
-An application test with JMeter consists of four steps: capture HTTP requests, export requests (.jrxml format for JMeter), set up the test plan and, finally, run the test in JMeter. The application generates different HTTP requests that need to be identified and interpreted to be played automatically. The use of Web technologies with asynchronous processing, client-side, can hinder this step because a user action can not immediately generate a request to the server. Moreover, in applications BPMS, many users act on different tasks in a same process, so that the HTTP requests that carry user identifying keys and processes.
-
-%No caso da aplicação criada com Bonita, verificou-se que existe uma chave identificadora de sessão que é gerada no momento em que usuário acessa o sistema e outra chave identificadora de instância, ou seja, que identifica cada execução do processo como única, sendo criada pelo servidor no momento em que o usuário inicia o processo. Para executar os testes, portanto, foi necessário localizar a requisição em que essas chaves são geradas e utilizar a ferramenta ``Extrator de Expressão Regular'' do JMeter para obter seus valores. Já na aplicação criada com Activiti, foi inviável identificar a requisição em que as chaves são geradas, pois não há uma requisição cujo retorno (resposta do servidor) contenha valores de chaves. Esta situação leva a crer que a geração das chaves identificadoras é feita internamente pelo BPMS, ou seja, não em uma requisição HTTP e, por consequência, esta não pode ser capturada e reproduzida no JMeter.
-In the case of application created with Bonita, it was found that there is a session identifier key that is generated at the time user accesses the system and other instance identifying key, that is, identifies each execution of the process as only being created by the server when the user initiates the process. To run the tests, so it was necessary to locate the request in which these keys are generated and use the "Regular Expression Extractor" tool of JMeter to get their values. In the application created with Activiti, it was impossible to identify the request in which the keys are generated, as there is not a request whose return (server response) contains key values. This suggests that the generation of the identifying key is made internally by the BPMS, ie not in an HTTP request and therefore this can not be captured and reproduced in JMeter.
-
-%Novos testes de carga com selenium + TestNG
-%Decidiu-se então realizar o teste de carga com as versões mais recentes dos BPMS. Começou-se com os testes na versão 7.1.2,  a captura e análise das requisições foi realizada da mesma forma dos testes anteriores no entanto, mesmo identificando e substituindo as chaves identificadores os testes não eram executados com sucesso. De fato, algumas etapas que deveriam ser reporoduzidas não eram executadas como, por exemplo: Iniciar um processo ou iniciar uma tarefa. Isso leva crer que algumas requisições não são capturadas ou algumas etapas não são executadas de uma forma que pode ser capturada via uma requisição http, problema semelhante ao que aconteceu nos teste com a versão xx do Activiti. Executando o teste de carga utilizando o JMeter com a versão 5.19 do Activiti e ocorreram os mesmo problemas observados na versão 5.14.
-% - também tentei com a versão 6.5.4 e foi pior
-% - Testes funcionais funcionaram em todas...
-% - colocar o teste funcional antes/inverter?
-%Como os testes funcionais apresentaram sucesso em todas as versões testadas de ambas as ferramentas optou-se por verificar uma forma de realizar o teste de carga através das capturas realizadas com o Selenium. Para isso, optou-se por usar a ferramenta TestNG\footnote{TestNG. Available at:. www.testng.org} que é um framework comumente utilizado para automatizar testes com o Selenium ~\cite{bindal2014test}. O TestNG possui uma notação que permite escolher o número de vezes que o teste deve ser executado e o número de threads, assim é possível simular a execução de diversas threads simultaneamente. 
-%continuar e traduzir
-
-
-
-
-\subsubsection{Load Test Results}
-
-%Devido aos problemas relatados na seção anterior, os testes de carga só puderam ser realizados na aplicação criada com Bonita. A fim de testar o comportamento do sistema com diferentes níveis de carga, foram executados testes com 1, 50, 100 e 200 usuários virtuais e foram analisadas requisições referentes a etapas essenciais para iniciar o processo: efetuar login, exibir a página inicial do Bonita, selecionar o processo, exibir o formulário inicial (Aluno solicita ACG) e enviar o formulário preenchido. A aplicação foi hospedada em um servidor SGI Altix XE 210 com 24 GB de RAM, acessível por uma rede Fast Ethernet.
-Because of the problems reported in the previous section, load tests could only be executed in the implementation created with Bonita. In order to test the system behavior with different load levels, tests were performed with 1, 50, 100 and 200 virtual users and requests were analyzed regarding the essential steps to begin the process: login, view the Bonita's homepage, select the process, show the first form (Student requests ACG) and send the completed form. The application is hosted on a SGI Altix XE 210 server with 24GB of RAM, accessible by a Fast Ethernet network.
-
-%Devido aos problemas relatados na seção anterior, os testes de carga só puderam ser realizados com a aplicação criada com Bonita. A fim de testar o comportamento do sistema com diferentes níveis de carga, foram executados testes com 1, 50, 100 e 200 usuários virtuais/acessos simultâneos e foram analisadas as requisições referentes às etapas: efetuar login, exibir a página inicial do Bonita, selecionar o processo, exibir o formulário inicial (Aluno solicita ACG) e enviar o formulário preenchido. Os testes foram executados em um servidor com 24 GB de RAM e 2 processadores Intel Xeon E5520, com 4 núcleos. 
-
-%Os tempos de resposta de cada etapa, em função do número de usuários, podem ser vistos na Tabela \ref{tab:resultadoCarga}. Os resultados mais alarmantes são para 200 usuários virtuais, em que o tempo médio de resposta na requisição de login foi de 10.149 ms, ou seja, aproximadamente 10 s, o que é um tempo de resposta alto. A média de tempo de resposta para todas requisições foi de 3.111 ms (ou seja, 3 s), e o desvio padrão foi de 13.088. Além dos altos tempos de resposta, o teste com 200 usuários virtuais apresentou taxas de erro, em algumas requisições, que não foram encontradas com um número menor de usuários. Por exemplo, a requisição que executou login apresentou uma taxa de 2\% de erro e, ao todo, as requisições obtiveram uma taxa de erro de 7.82\%. Os erros ocorreram devido a requisições sem resposta. %Confrontando tais erros com logs do Bonita, estes indicam timeouts internos em alguns métodos, mas os dados não permitiram identificar precisamente a origem dos erros.
-
-The response times of each stage, depending on the number of users, can be seen in Table \ref{tab:resultadoCarga}. The most alarming results are for 200 virtual users, where the average response time on the login request was for 10,149 ms, or approximately 10 seconds, which is a high response time. The average response time for all requests was 3111 ms (i.e., 3 s), and the standard deviation was 13,088. Besides high response times, the test showed virtual users 200 with error rates in some requests which were not found with a smaller number of users. For example, a request that has performed login showed a rate of 2\% error and, in total, the requests have obtained an error rate of 7.82\%. The error occurred because of unanswered requests.
-
-
-\begin{table}
-{\scriptsize
-\centering
-\begin{tabular}{p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}}
-\hline
-Users & Login & Home Page & Process selection & First form & Send form \\\hline
-1 & 126 & 32 & 38 & 80 & 73\\\hline
-50 & 597 & 191 & 179 & 368 & 152\\\hline
-100 & 1972 & 571 & 552 & 760 & 694\\\hline
-200 & 10.149 & 3.239 & 934 & 2.122 & 1.918\\\hline
-\end{tabular}
-}
-\caption{Average response times, in milliseconds}
-\label{tab:resultadoCarga}
-\end{table}
-
-
-%De forma geral, portanto, o teste de carga com JMeter atingiu seus objetivos e ajuda a explicar a sobrecarga que ocorreu com a aplicação em produção, quando muitos alunos tentaram acessar o formulário inicial numa data limite. No entanto, é importante ressaltar que este teste foi executado apenas em etapas iniciais do processo e, mesmo assim, já foi trabalhoso e consumiu algumas horas de preparação, por exigir uma análise profunda das requisições HTTP para executar os testes com sucesso. Ao todo, foram capturadas cerca de 100 requisições só nestas etapas, portanto estima-se que o teste de uma tarefa mais ao final do processo possa se tornar inviável com JMeter, por demandar a identificação e interpretação de muitas requisições. Outra observação importante, nesta experiência, é que esta abordagem de teste sofre com a dependência das tecnologias Web empregadas pelo BPMS.
-
-Overall, therefore, the load testing with JMeter achieved its objectives and helps explain the overload that occurred with the application in production, when many students tried to access the initial form in a deadline. However, it is important to note that this test was performed only in the early stages of the process and, even then, was already laborious and consumed a few hours of preparation, because it requires a deep analysis of HTTP requests to run the tests successfully. In all, about 100 requests were captured only in these steps, therefore it is estimated that the testing of a task towards the end of the process can become unwieldy with JMeter, it demands the identification and interpretation of many requests. Another important observation in this experiment is that this testing approach suffers from dependence on Web technologies used by BPMS.
 
 \subsection{Functional Tests}
 
@@ -240,24 +187,143 @@ The functional tests were more viable than load tests, because a good part of th
 
 Functional testing was also less dependent on BPMN. The Table \ref{tab:testeFuncional} presents a summary of the main similarities and differences found. In both cases, it took a few modifications to the code generated by the Selenium and Cucumber simply by inspecting the structure of Web pages. Cucumber makes the implementation of testing faster and less labor than if it were used only Selenium, shortening the code generation aligned with the test scenarios. Still, if necessary to extend the test to many tasks of a process, changes in the test code may become laborious.
 
+%\begin{table}
+%\centering
+%\begin{center}
+%{\scriptsize
+%\begin{tabular}{p{6cm}|l|p{4.5cm}}
+%\hline
+% & Bonita & Activiti \\\hline
+%Web Technologies & HTML, CSS, Ajax & HTML, CSS, Ajax \\\hline
+%Capture of user interaction using Selenium & Total & Partial (required manual insertion of some fields) \\\hline
+%It was possible to export the code generated by Selenium? & Yes & Yes \\\hline
+%Recognition of all fields captured WITHOUT code change & Partial & Partial \\\hline
+%Recognition of all fields captured WITH code change & Total & Total \\\hline
+%\end{tabular}
+%}
+%\caption{Comparative overview of the functional test}
+%\label{tab:testeFuncional}
+%\end{center}
+%\end{table}
+
 \begin{table}
+\centering
 \begin{center}
-{\scriptsize
-\begin{tabular}{p{6cm}|l|p{4.5cm}}
+%{\scriptsize
+\begin{tabular}{p{3cm}|p{2cm}|p{2.5cm}|p{2.5cm}|p{2.5cm}}
 \hline
- & Bonita & Activiti \\\hline
-Web Technologies & HTML, CSS, Ajax & HTML, CSS, Ajax \\\hline
-Capture of user interaction using Selenium & Total & Partial (required manual insertion of some fields) \\\hline
-It was possible to export the code generated by Selenium? & Yes & Yes \\\hline
-Recognition of all fields captured WITHOUT code change & Partial & Partial \\\hline
-Recognition of all fields captured WITH code change & Total & Total \\\hline
+ & Bonita 5.7.2 & Bonita 7.1.2 & Activiti 5.14 & Activiti 5.19 \\\hline
+Web Technologies & HTML, CSS, Ajax & HTML, CSS, Ajax & HTML, CSS, Ajax & HTML, CSS, Ajax \\\hline
+Capture of user interaction using Selenium & Total & Partial (required manual insertion of some fields) & Partial (required manual insertion of some fields) & Partial (required manual insertion of some fields) \\\hline
+It was possible to export the code generated by Selenium? & Yes & Yes & Yes & Yes\\\hline
+Recognition of all fields captured WITHOUT code change & Partial & Partial & Partial & Partial \\\hline
+Recognition of all fields captured WITH code change & Total & Total & Total & Total \\\hline
 \end{tabular}
-}
+%}
 \caption{Comparative overview of the functional test}
 \label{tab:testeFuncional}
 \end{center}
 \end{table}
 
+
+\subsection{Load Tests}
+
+%Testes de carga em aplicações Web são tipicamente realizados gerando-se múltiplas requisições HTTP ao servidor, de forma controlada. Para isso, uma etapa crítica é a identificação das requisições que devem ser reproduzidas. Existem diversas ferramentas que se propõem a facilitar este tipo de teste, dentre as quais pode-se citar: JMeter\footnote{Apache JMeter. Disponível em: www.jmeter.apache.org.}, The Grinder\footnote{The Grinder. Disponível em: www.grinder.sourceforge.net/.} e WebLOAD\footnote{WebLOAD. Disponível em: radview.com/webload-download/.}. Todas são ferramentas \emph{open source} e possuem diversas opções, mas escolheu-se a ferramenta JMeter pela sua funcionalidade ``proxy server'' que é de grande auxílio à captura das requisições.
+Load tests on web applications is typically performed by generating multiple HTTP requests to the server in a controlled manner. For this, a critical step is to identify the requests that should be played. There are several tools that purport to facilitate this type of testing, among which we can mention: JMeter\footnote{Apache JMeter. . Available at: www.jmeter.apache.org}, The Grinder\footnote{The Grinder. Available at: www.grinder.sourceforge.net/} and WebLOAD\footnote{WebLOAD. Available at: www.radview.com/webload-download/}. All tools are open source and have several options, but chose to JMeter tool for its functionality "proxy server" which is a great help to the capture of requests.
+
+%Um teste da aplicação com JMeter consiste em quatro etapas: capturar as requisições HTTP, exportar as requisições (formato .jrxml para JMeter), configurar o plano de teste e, por fim, executar o teste no JMeter. A aplicação gera diferentes requisições HTTP que precisam ser identificadas e interpretadas, para serem reproduzidas automaticamente. O emprego de tecnologias Web com processamento assíncrono, do lado do cliente, pode dificultar esta etapa, pois uma ação do usuário pode não gerar imediatamente uma requisição ao servidor. Além disso, em aplicações de BPMS, diversos usuários atuam sobre diferentes tarefas de um mesmo processo, de modo que as requisições HTTP carregam chaves identificando usuários e processos.
+An application test with JMeter consists of four steps: capture HTTP requests, export requests (.jrxml format for JMeter), set up the test plan and, finally, run the test in JMeter. The application generates different HTTP requests that need to be identified and interpreted to be played automatically. The use of Web technologies with asynchronous processing, client-side, can hinder this step because a user action can not immediately generate a request to the server. Moreover, in applications BPMS, many users act on different tasks in a same process, so that the HTTP requests that carry user identifying keys and processes.
+
+%No caso da aplicação criada com Bonita, verificou-se que existe uma chave identificadora de sessão que é gerada no momento em que usuário acessa o sistema e outra chave identificadora de instância, ou seja, que identifica cada execução do processo como única, sendo criada pelo servidor no momento em que o usuário inicia o processo. Para executar os testes, portanto, foi necessário localizar a requisição em que essas chaves são geradas e utilizar a ferramenta ``Extrator de Expressão Regular'' do JMeter para obter seus valores. Já na aplicação criada com Activiti, foi inviável identificar a requisição em que as chaves são geradas, pois não há uma requisição cujo retorno (resposta do servidor) contenha valores de chaves. Esta situação leva a crer que a geração das chaves identificadoras é feita internamente pelo BPMS, ou seja, não em uma requisição HTTP e, por consequência, esta não pode ser capturada e reproduzida no JMeter.
+In the case of application created with Bonita in the version 5.7.2, it was found that there is a session identifier key that is generated at the time user accesses the system and other instance identifying key, that is, identifies each execution of the process as only being created by the server when the user initiates the process. To run the tests, so it was necessary to locate the request in which these keys are generated and use the "Regular Expression Extractor" tool of JMeter to get their values. In the application created with Activiti in the version 5.14, it was impossible to identify the request in which the keys are generated, as there is not a request whose return (server response) contains key values. This suggests that the generation of the identifying key is made internally by the BPMS, ie not in an HTTP request and therefore this can not be captured and reproduced in JMeter.
+
+% colocar uma nova seçao aqui? 
+%Novos testes de carga com selenium + TestNG
+%Para expandir a experiencia, decidiu-se realizar o teste de carga com as versões atualmente mais recentes das ferramentas BPMS. Iniciou-se com os testes na versão 7.1.2 do Bonita,  a captura e análise das requisições foi realizada da mesma forma dos testes anteriores. No entanto, mesmo substituindo as chaves identificadores os testes não eram executados com sucesso. Algumas etapas que deveriam ser reproduzidas não eram executadas como, por exemplo, iniciar um processo ou iniciar uma tarefa. Isso leva crer que algumas etapas não são executadas de uma forma que pode ser capturada via uma requisição HTTP, problema semelhante ao que aconteceu nos teste com a versão 5.14 do Activiti. Ao realizar o teste de carga com a versão 5.19 do Activiti ocorreram os mesmos problemas observados na versão 5.14.
+To increase the experience and see if some problems are repeated in other versions, it was decided to perform the load test with the currently most recent issue of BPMS tools. It began with the tests in version 7.1.2 of Bonita, capture and analysis of requests was executed in the same way the previous tests. However, even replacing the identifier keys tests were not successfully executed. Some steps that should be reproduced were not performed, for example, start a process or start a task. This leads to believe that some steps are not performed in a way that can be captured via an HTTP request, problem similar to what happened in test with the version 5.14 of BPMS Activiti. When performing the load test with the 5.19 version of Activiti occurred the same problems seen in version 5.14.
+
+% - também tentei com a versão 6.5.4 e foi pior
+% - Testes funcionais funcionaram em todas...
+% atualizar testes funcionais
+
+%Como os testes funcionais apresentaram sucesso em todas as versões testadas de ambas as ferramentas, optou-se por verificar uma forma de realizar o teste de carga através das capturas realizadas com o Selenium. Para isso, escolheu-se a ferramenta TestNG\footnote{TestNG. Available at:. www.testng.org} que é um framework comumente utilizado para automatizar testes com o Selenium ~\cite{bindal2014test}. O TestNG possui uma notação que permite escolher o número de vezes que o teste deve ser executado e o número de threads, assim é possível simular a execução de diversas threads simultaneamente. 
+As the functional tests with Selenium were successful executed in all tested versions of both tools, 
+unlike load test with JMeter, it was decided to figure out a way to perform load testing through the information obtained from the Selenium. Was chose to use the TestNG \footnote{TestNG. Available at: www.testng.org} tool, which is a framework commonly used to automate testing with Selenium ~\cite{bindal2014test}. The TestNG has a notation that allow you to set the number of times the test must be performed and the number of threads, in that way is possible to simulate the execution of several threads simultaneously. Load testing using Selenium and TestNG consist primarily of the code that simulates the user running with the application, similar to that used in functional testing, and annotation in TestNG format.
+
+%Por padrao, cada execuçao do teste com o Selenium abre uma nova janela no browser selecionado (neste caso, o Mozilla Firefox \footnote{Mozilla Firefox. Available at: www.mozilla.org/pt-BR/firefox/.}), o que pode dificultar a execuçao do teste com um grande numero de usuarios virtuais. Assim, alem de utilizar os codigos gerados com o Selenium e a ferramenta TestNG para realizar os testes, foi utilizado um Virtual Frame Buffer \footnote{XVFB - X Virtual Frame Buffer. Available at: http://www.x.org/archive/X11R7.6/doc/man/man1/Xvfb.1.xhtml.} para permitir que o browser execute o teste sem abrir uma nova janela. 
+By default, each test execution with Selenium opens a new window in the selected browser (in this case, Mozilla Firefox \footnote{Mozilla Firefox Available at: www.mozilla.org/pt-BR/firefox/}), the which can hinder test execution with a large number of virtual users. So in addition to using codes generated with Selenium and TestNG tool to perform the tests, was used a Virtual Frame Buffer \footnote{XVFB - X Virtual Frame Buffer. Available at: http://www.x.org/archive/X11R7.6/doc/man/man1/Xvfb.1.xhtml.} to allow the browser to perform the test without opening a new window.
+
+%Assim, foi possivel executar o teste de carga utilizando o codigo obtido no Selenium. Com este teste, foi possivel analisar o desempenho de todas as versoes das ferramentas BPMS analisadas.
+It was possible to run the load test using the code obtained in Selenium. With this test, we were able to analyze the performance of all versions of the analyzed BPMS tools. In Table \ref{tab:foiPossivelCarga} may have seen an overview about which tests could be performed. 
+
+\begin{table}
+\centering
+%{\scriptsize
+\begin{tabular}{p{3cm}|p{3cm}|p{3cm}}
+\hline
+BPMS and version & Load Test with JMeter & Load Teste with Selenium and TestNG \\\hline
+Bonita 5.7.2 & Able to run the test & Able to run the test \\\hline
+Bonita 7.1.2 & Unable to run the test & Able to run the test \\\hline
+Activiti 5.14 & Unable to run the test & Able to run the test \\\hline
+Activiti 5.19 & Unable to run the test & Able to run the test \\\hline
+\end{tabular}
+%}
+\caption{Overview of the load tests}
+\label{tab:foiPossivelCarga}
+\end{table}
+
+\subsubsection{Load Test Results}
+
+%Devido aos problemas relatados na seção anterior, os testes de carga só puderam ser realizados na aplicação criada com Bonita. A fim de testar o comportamento do sistema com diferentes níveis de carga, foram executados testes com 1, 50, 100 e 200 usuários virtuais e foram analisadas requisições referentes a etapas essenciais para iniciar o processo: efetuar login, exibir a página inicial do Bonita, selecionar o processo, exibir o formulário inicial (Aluno solicita ACG) e enviar o formulário preenchido. A aplicação foi hospedada em um servidor SGI Altix XE 210 com 24 GB de RAM, acessível por uma rede Fast Ethernet.
+Because of the problems reported in the previous section, load tests could only be executed in the implementation created with Bonita. In order to test the system behavior with different load levels, tests were performed with 1, 50, 100 and 200 virtual users and requests were analyzed regarding the essential steps to begin the process: login, view the Bonita's homepage, select the process, show the first form (Student requests ACG) and send the completed form. The application is hosted on a SGI Altix XE 210 server with 24GB of RAM, accessible by a Fast Ethernet network.
+
+%Devido aos problemas relatados na seção anterior, os testes de carga só puderam ser realizados com a aplicação criada com Bonita. A fim de testar o comportamento do sistema com diferentes níveis de carga, foram executados testes com 1, 50, 100 e 200 usuários virtuais/acessos simultâneos e foram analisadas as requisições referentes às etapas: efetuar login, exibir a página inicial do Bonita, selecionar o processo, exibir o formulário inicial (Aluno solicita ACG) e enviar o formulário preenchido. Os testes foram executados em um servidor com 24 GB de RAM e 2 processadores Intel Xeon E5520, com 4 núcleos. 
+
+%Os tempos de resposta de cada etapa, em função do número de usuários, podem ser vistos na Tabela \ref{tab:resultadoCarga}. Os resultados mais alarmantes são para 200 usuários virtuais, em que o tempo médio de resposta na requisição de login foi de 10.149 ms, ou seja, aproximadamente 10 s, o que é um tempo de resposta alto. A média de tempo de resposta para todas requisições foi de 3.111 ms (ou seja, 3 s), e o desvio padrão foi de 13.088. Além dos altos tempos de resposta, o teste com 200 usuários virtuais apresentou taxas de erro, em algumas requisições, que não foram encontradas com um número menor de usuários. Por exemplo, a requisição que executou login apresentou uma taxa de 2\% de erro e, ao todo, as requisições obtiveram uma taxa de erro de 7.82\%. Os erros ocorreram devido a requisições sem resposta. %Confrontando tais erros com logs do Bonita, estes indicam timeouts internos em alguns métodos, mas os dados não permitiram identificar precisamente a origem dos erros.
+
+%resultados semelhantes ao teste com jmeter
+
+The response times of each stage, depending on the number of users, can be seen in Table \ref{tab:resultadoCarga}. The most alarming results are for 200 virtual users, where the average response time on the login request was for 10,149 ms, or approximately 10 seconds, which is a high response time. The average response time for all requests was 3111 ms (i.e., 3 s), and the standard deviation was 13,088. Besides high response times, the test showed virtual users 200 with error rates in some requests which were not found with a smaller number of users. For example, a request that has performed login showed a rate of 2\% error and, in total, the requests have obtained an error rate of 7.82\%. The error occurred because of unanswered requests.
+
+
+%\begin{table}
+%{\scriptsize
+%\centering
+%\begin{tabular}{p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}}
+%\hline
+%Users & Login & Home Page & Process selection & First form & Send form \\\hline
+%1 & 126 & 32 & 38 & 80 & 73\\\hline
+%50 & 597 & 191 & 179 & 368 & 152\\\hline
+%100 & 1972 & 571 & 552 & 760 & 694\\\hline
+%200 & 10.149 & 3.239 & 934 & 2.122 & 1.918\\\hline
+%\end{tabular}
+%}
+%\caption{Average response times, in milliseconds}
+%\label{tab:resultadoCarga}
+%\end{table}
+
+\begin{table}
+%{\scriptsize
+\centering
+\begin{tabular}{p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}}
+\hline
+Users & Login & Home Page & Process selection & First form & Send form \\\hline
+1 & 126 & 32 & 38 & 80 & 73\\\hline
+50 & 597 & 191 & 179 & 368 & 152\\\hline
+100 & 1972 & 571 & 552 & 760 & 694\\\hline
+200 & 10.149 & 3.239 & 934 & 2.122 & 1.918\\\hline
+\end{tabular}
+%}
+\caption{Average response times, in milliseconds}
+\label{tab:resultadoCarga}
+\end{table}
+
+
+%De forma geral, portanto, o teste de carga com JMeter atingiu seus objetivos e ajuda a explicar a sobrecarga que ocorreu com a aplicação em produção, quando muitos alunos tentaram acessar o formulário inicial numa data limite. No entanto, é importante ressaltar que este teste foi executado apenas em etapas iniciais do processo e, mesmo assim, já foi trabalhoso e consumiu algumas horas de preparação, por exigir uma análise profunda das requisições HTTP para executar os testes com sucesso. Ao todo, foram capturadas cerca de 100 requisições só nestas etapas, portanto estima-se que o teste de uma tarefa mais ao final do processo possa se tornar inviável com JMeter, por demandar a identificação e interpretação de muitas requisições. Outra observação importante, nesta experiência, é que esta abordagem de teste sofre com a dependência das tecnologias Web empregadas pelo BPMS.
+
+Overall, therefore, the load testing with JMeter achieved its objectives and helps explain the overload that occurred with the application in production, when many students tried to access the initial form in a deadline. However, it is important to note that this test was performed only in the early stages of the process and, even then, was already laborious and consumed a few hours of preparation, because it requires a deep analysis of HTTP requests to run the tests successfully. In all, about 100 requests were captured only in these steps, therefore it is estimated that the testing of a task towards the end of the process can become unwieldy with JMeter, it demands the identification and interpretation of many requests. Another important observation in this experiment is that this testing approach suffers from dependence on Web technologies used by BPMS.
+
+%atualizar resultados
 
 \section{Considerações Finais}\label{s:conclu}
 %Neste trabalho, explorou-se soluções de teste automatizado em uma aplicação de BPMS. Na ausência de suporte a testes de carga e funcionais nos BPMS Bonita e Activiti, aplicou-se ferramentas de teste voltadas a aplicações Web em geral. 
