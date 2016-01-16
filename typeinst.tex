@@ -128,7 +128,7 @@ Whereas BPMS applications are usually Web-based systems, it can be assumed that 
 The target application of this work refers to a common process in higher education institutions: the appreciation of complementary activities, ie, activities that form the flexible part of the undergraduate curriculum (participation in lectures, events, projects , etc.). In a previous work ~\cite{sbsi2013}, presented the modeling, implementation and deployment of this process. Their representation in BPMN, in Figure \ref{fig:diagrama}, reveals a total of 11 tasks span responsibility 5 divisions.
 %citando trabalho em portugues
 
-In previous work, we implemented the process with the Bonita BPM tool \footnote{Bonita BPM (formerly Bonita Open Solution). Available at: www.bonitasoft.com} in version 5.7.2, an open source BPMS recognized in the corporate world ~\cite{forrester}. The resulting application has several Web forms for each division of responsibility, being the first one for the data population by the student. According to the type of complementary activities, the flow is directed to those responsible for the assessment and validation of activity. Note, in Figure \ref{fig:diagrama}, the process has several gateways, which leads to over 15 possible paths in the process.
+In that previous work, we implemented the process with the Bonita BPM tool \footnote{Bonita BPM (formerly Bonita Open Solution). Available at: www.bonitasoft.com} in version 5.7.2, an open source BPMS recognized in the corporate world ~\cite{forrester}. The resulting application has several Web forms for each division of responsibility, being the first one for the data population by the student. According to the type of complementary activities, the flow is directed to those responsible for the assessment and validation of activity. Note, in Figure \ref{fig:diagrama}, the process has several gateways, which leads to over 15 possible different paths in the process.
 
 \begin{figure}[ht]
 \centering
@@ -138,8 +138,7 @@ In previous work, we implemented the process with the Bonita BPM tool \footnote{
 \end{figure}
 
 %A aplicação foi submetida a testes funcionais realizados manualmente, além de testes de aceitação realizados com um grupo de usuários reais. Entretanto, com algumas semanas em operação, surgiram problemas: instâncias do processo falharam devido a entradas inesperadas, serviços não foram restabelecidos corretamente após serem interrompidos e houve sobrecarga devido ao grande número de casos abertos numa data limite. Essa experiência motivou a busca de soluções para automação de testes.
-The application was subjected to functional testing performed manually, in addition to acceptance testing with a group of real users. However, a few weeks in operation, problems arose: Process instances failed due to unexpected inputs, services were not restored properly after being interrupted and there was overloaded because of the number of cases opened on a deadline. This experience led to the search for solutions for test automation.
-
+The application was subjected to functional testing performed manually, in addition to acceptance testing with a group of real users. However, a few weeks in operation, problems emerge: Process instances failed due to unexpected inputs, services were not restored properly after being interrupted and there was overloaded because of the number of cases opened on a deadline. This experience led to the search for solutions for test automation.
 
 %Verificou-se, no entanto, que o BPMS utilizado não possuía suporte a nenhum tipo de teste automatizado. Buscou-se outros BPMS com licenças \emph{open source} ou \emph{freeware}, que pudessem implementar o processo em questão e que oferecessem suporte a testes. A preferência por este tipo de licença foi devida à sua flexibilidade e viabilidade financeira para o ``cliente'' deste projeto: uma instituição pública de ensino.
 It was found, however, that the BPMS used does not support any type of automated testing. We attempted to other BPMS with open source or freeware licenses, which could implement the process in question and offered testing support. The preference for this type of license was due to its flexibility and affordability to the "client" this project: a public educational institution.
@@ -274,8 +273,8 @@ Activiti 5.19 & Unable to run the test & Able to run the test \\\hline
 
 \subsubsection{Load Test Results}
 
-%Devido aos problemas relatados na seção anterior, os testes de carga só puderam ser realizados na aplicação criada com Bonita. A fim de testar o comportamento do sistema com diferentes níveis de carga, foram executados testes com 1, 50, 100 e 200 usuários virtuais e foram analisadas requisições referentes a etapas essenciais para iniciar o processo: efetuar login, exibir a página inicial do Bonita, selecionar o processo, exibir o formulário inicial (Aluno solicita ACG) e enviar o formulário preenchido. A aplicação foi hospedada em um servidor SGI Altix XE 210 com 24 GB de RAM, acessível por uma rede Fast Ethernet.
-Because of the problems reported in the previous section, load tests could only be executed in the implementation created with Bonita. In order to test the system behavior with different load levels, tests were performed with 1, 50, 100 and 200 virtual users and requests were analyzed regarding the essential steps to begin the process: login, view the Bonita's homepage, select the process, show the first form (Student requests ACG) and send the completed form. The application is hosted on a SGI Altix XE 210 server with 24GB of RAM, accessible by a Fast Ethernet network.
+%Devido aos problemas relatados na seção anterior, os testes de carga com o JMeter só puderam ser realizados na aplicação criada com Bonita. A fim de testar o comportamento do sistema com diferentes níveis de carga, foram executados testes com 1, 50, 100 e 200 usuários virtuais e foram analisadas requisições referentes a etapas essenciais para iniciar o processo: efetuar login, exibir a página inicial do Bonita, selecionar o processo, exibir o formulário inicial (Aluno solicita ACG) e enviar o formulário preenchido. A aplicação foi hospedada em um servidor SGI Altix XE 210 com 24 GB de RAM, acessível por uma rede Fast Ethernet.
+Due to problems reported in the previous section, load tests with JMeter could only be achieved in the implementation created with Bonita. In order to test the system behavior with different load levels, tests were performed with 1, 50, 100 and 200 virtual users and requests were analyzed regarding the essential steps to begin the process: log in, view the Bonita's homepage, select the process, show the initial form and send the completed form. The application is hosted on a SGI Altix XE 210 server with 24GB of RAM, accessible by a Fast Ethernet network.
 
 %Devido aos problemas relatados na seção anterior, os testes de carga só puderam ser realizados com a aplicação criada com Bonita. A fim de testar o comportamento do sistema com diferentes níveis de carga, foram executados testes com 1, 50, 100 e 200 usuários virtuais/acessos simultâneos e foram analisadas as requisições referentes às etapas: efetuar login, exibir a página inicial do Bonita, selecionar o processo, exibir o formulário inicial (Aluno solicita ACG) e enviar o formulário preenchido. Os testes foram executados em um servidor com 24 GB de RAM e 2 processadores Intel Xeon E5520, com 4 núcleos. 
 
@@ -284,7 +283,6 @@ Because of the problems reported in the previous section, load tests could only 
 %resultados semelhantes ao teste com jmeter
 
 The response times of each stage, depending on the number of users, can be seen in Table \ref{tab:resultadoCarga}. The most alarming results are for 200 virtual users, where the average response time on the login request was for 10,149 ms, or approximately 10 seconds, which is a high response time. The average response time for all requests was 3111 ms (i.e., 3 s), and the standard deviation was 13,088. Besides high response times, the test showed virtual users 200 with error rates in some requests which were not found with a smaller number of users. For example, a request that has performed login showed a rate of 2\% error and, in total, the requests have obtained an error rate of 7.82\%. The error occurred because of unanswered requests.
-
 
 %\begin{table}
 %{\scriptsize
@@ -323,7 +321,26 @@ Users & Login & Home Page & Process selection & First form & Send form \\\hline
 
 Overall, therefore, the load testing with JMeter achieved its objectives and helps explain the overload that occurred with the application in production, when many students tried to access the initial form in a deadline. However, it is important to note that this test was performed only in the early stages of the process and, even then, was already laborious and consumed a few hours of preparation, because it requires a deep analysis of HTTP requests to run the tests successfully. In all, about 100 requests were captured only in these steps, therefore it is estimated that the testing of a task towards the end of the process can become unwieldy with JMeter, it demands the identification and interpretation of many requests. Another important observation in this experiment is that this testing approach suffers from dependence on Web technologies used by BPMS.
 
-%atualizar resultados
+%teste de carga com selenium + testng
+On the other hand, in the load test performed with Selenium and TestNG all versions of the tools could be successfully tested. Because it is a load test conducted in a different way the JMeter, without HTTP requests, could not be analyzed on isolated results of each request. The result of TestNG test shows the average test runtime in the execution of the first task of the process. In the Table \ref{tab:resultadoCargaSelenium} can be seen a summary of the average response time for each version of the tools for each amount of virtual users/threads.
+
+\begin{table}
+%{\scriptsize
+\centering
+\begin{tabular}{p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}}
+\hline
+Users & Bonita 5.7.2 & Bonita 7.1.2 & Activiti 5.14 & Activiti 5.19 \\\hline
+1 & xx & xx & xx & xx \\\hline
+50 & xx & xx & xx & xx \\\hline
+100 & xx & xx & xx & xx \\\hline
+200 & xx & xx & xx & xx \\\hline
+\end{tabular}
+%}
+\caption{Average response times, in milliseconds}
+\label{tab:resultadoCargaSelenium}
+\end{table}
+
+%analise do resultados
 
 \section{Considerações Finais}\label{s:conclu}
 %Neste trabalho, explorou-se soluções de teste automatizado em uma aplicação de BPMS. Na ausência de suporte a testes de carga e funcionais nos BPMS Bonita e Activiti, aplicou-se ferramentas de teste voltadas a aplicações Web em geral. 
@@ -354,9 +371,29 @@ Although the experience of this work was not exhaustive, it might be noted that 
 
 \begin{thebibliography}{4}
 
+\bibitem{weske}
+Weske, M.: Business Process Management: Concepts, Languages, Architectures. Springer, 2nd edition, (2012)
+
+\bibitem{aalst2013survey}
+van~der Aalst, W. M.~P.: Business process management: A comprehensive survey. {\em ISRN Software Engineering}, 2013(507984)
+
+\bibitem{graham2012experiences}
+Graham, D. and Fewster, M.: Experiences of Test Automation: Case Studies of Software Test Automation. Addison-Wesley (2012)
+
+\bibitem{sbsi2013}
+de~Moura, J.~L. et~al.: Gestão de processos de negócio em curso de sistemas de
+  informação: Relato de experiência utilizando software livre. In {\em IX Simpósio Brasileiro de Sistemas de Informação}, pp.
+  206--217, (2013)
+
 \bibitem{ABPMP} Guide to the Business Process Management Body of Knowledge (BPM
   CBOK). Association of Business Process Management Professionals, 2nd
   edition (2012)
+
+\bibitem{forrester}
+Forrester Research.: The forrester wave: {BPM} suites, {Q1} (2013)
+
+\bibitem{greenresearch}
+Winter Green Research.: Business process management (BPM) cloud, mobile, and patterns: Market shares, strategies, and forecasts, worldwide, 2013 to 2019.
 
 \bibitem{swebok14}
 Bourque, P. e Fairley, R.~E.: Guide to the Software Engineering Body of Knowledge (SWEBOK), Version 3.0. IEEE Computer Society (2014)
@@ -367,33 +404,13 @@ Bourque, P. e Fairley, R.~E.: Guide to the Software Engineering Body of Knowledg
 %Chiavegatto, R. et~al.: Especificação e automação colaborativas de testes utilizando a técnica {BDD}. In {\em XII Simpósio Brasileiro de Qualidade de Software}, pp.
  % 334--341, (2013)
 
-
-\bibitem{sbsi2013}
-de~Moura, J.~L. et~al.: Gestão de processos de negócio em curso de sistemas de
-  informação: Relato de experiência utilizando software livre. In {\em IX Simpósio Brasileiro de Sistemas de Informação}, pp.
-  206--217, (2013)
-
-\bibitem{forrester}
-Forrester Research.: The forrester wave: {BPM} suites, {Q1} (2013)
-
 \bibitem{bindal2014test}
 Bindal, P. and Gupta, S.: Test Automation Selenium WebDriver using TestNG. In {\em Journal of Engineering Computers \& Applied Sciences}, pp.
   18--40, (2014)
 
-\bibitem{graham2012experiences}
-Graham, D. and Fewster, M.: Experiences of Test Automation: Case Studies of Software Test Automation. Addison-Wesley (2012)
+%\bibitem{myers}
+%Myers, G.~J. and Sandler, C.: The Art of Software Testing. John Wiley \& Sons, (2011)
 
-\bibitem{myers}
-Myers, G.~J. and Sandler, C.: The Art of Software Testing. John Wiley \& Sons, (2011)
-
-\bibitem{aalst2013survey}
-van~der Aalst, W. M.~P.: Business process management: A comprehensive survey. {\em ISRN Software Engineering}, 2013(507984)
-
-\bibitem{weske}
-Weske, M.: Business Process Management: Concepts, Languages, Architectures. Springer, 2nd edition, (2012)
-
-\bibitem{greenresearch}
-Winter Green Research.: Business process management (BPM) cloud, mobile, and patterns: Market shares, strategies, and forecasts, worldwide, 2013 to 2019.
 
 \end{thebibliography}
 
