@@ -281,9 +281,16 @@ To perform the tests were analyzed different tools like: {citar aqui}. Lastly, w
 %Por padrao, cada execuçao do teste com o Selenium abre uma nova janela no browser selecionado (neste caso, o Mozilla Firefox \footnote{Mozilla Firefox. Available at: www.mozilla.org/pt-BR/firefox/.}), o que pode dificultar a execuçao do teste com um grande numero de usuarios virtuais. Assim, alem de utilizar os codigos gerados com o Selenium e a ferramenta TestNG para realizar os testes, foi utilizado um Virtual Frame Buffer \footnote{XVFB - X Virtual Frame Buffer. Available at: http://www.x.org/archive/X11R7.6/doc/man/man1/Xvfb.1.xhtml.} para permitir que o browser execute o teste sem abrir uma nova janela. 
 By default, each test execution with Selenium opens a new window in the selected browser (in this case, Mozilla Firefox \footnote{Mozilla Firefox Available at: www.mozilla.org/pt-BR/firefox/}), the which can hinder test execution with a large number of virtual users. So in addition to using codes generated with Selenium and TestNG tool to perform the tests, was used a Virtual Frame Buffer \footnote{XVFB - X Virtual Frame Buffer. Available at: http://www.x.org/archive/X11R7.6/doc/man/man1/Xvfb.1.xhtml.} to allow the browser to perform the test without opening a new window.
 
-%Para a execuçao dos testes, o codigo capturado pelo Selenium foi reaproveitado do teste funcional e apenas foi necessario inserir a anotaçao do TestNG e o codigo referente ao Virtual Frame Buffer. O codigo relativo a execuçao do teste de carga na primeira tarefa do processo simulando 200 usuarios virtuais pode ser visto na Figura X.
-%traduzir e colocar a figura do codigo
-It was possible to run the load test using the code obtained in Selenium combined with TestNG. With this test, we were able to analyze the performance of two versions of the both BPMS tools. In Table \ref{tab:foiPossivelCarga} may have seen an overview about which tests could be performed. 
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.9\textwidth]{figuras/codigoCargaSelenium.png}
+\caption{Selenium Load Test Source Code}
+\label{fig:codigoCargaSelenium}
+\end{figure}
+
+
+%Para a execuçao dos testes, o codigo capturado pelo Selenium foi reaproveitado do teste funcional e apenas foi necessario inserir a anotaçao do TestNG e o codigo referente ao Virtual Frame Buffer. Uma parte do codigo relativo a execuçao do teste de carga na primeira tarefa do processo simulando 200 usuarios virtuais pode ser visto na Figura X.
+For the tests, the code captured by Selenium was reused functional test and it was only necessary to insert the annotation of TestNG and the code of the Virtual Frame Buffer. A part of on the implementation of load test code simulating 200 virtual users in the first task of the process can be seen in Figure \ref{fig:codigoCargaSelenium}. It was possible to run the load test using the code obtained in Selenium combined with TestNG. With this test, we were able to analyze the performance of two versions of the both BPMS tools. In Table \ref{tab:foiPossivelCarga} may have seen an overview about which tests could be performed. 
 
 \begin{table}
 \centering
