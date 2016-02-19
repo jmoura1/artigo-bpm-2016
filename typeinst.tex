@@ -78,7 +78,7 @@ Universidade Federal de Santa Maria -- UFSM\\}
 
 \begin{abstract}
 %The abstract should summarize the contents of the paper and should contain at least 70 and at most 150 words. It should be written using the \emph{abstract} environment.
-This article describes an experience of test automation of an application developed with the support of Business Process Management Systems - BPMS. For this purpose, we have implemented the same process using different versios of two different BPMS: Bonita and Activiti. We submit the resulting Web applications to two types of tests (load tests and functional tests), using test tools Apache JMeter, Selenium and Cucumber. The results show the feasibility and limitations of test automation for this type of application.
+This article describes an experience of test automation of an application developed with the support of Business Process Management Systems - BPMS. For this purpose, we have implemented the same process using different versios of two different BPMS: Bonita and Activiti. We submit the resulting Web applications to two types of tests (load tests and functional tests), using test tools Selenium, Cucumber, Apache JMeter and TestNG. The results show the feasibility and limitations of test automation for this type of application.
 
 %\keywords{We would like to encourage you to list your keywords within the abstract section}
 \end{abstract}
@@ -393,19 +393,17 @@ Users & Bonita 5.7.2 & Bonita 7.1.2 & Activiti 5.14 & Activiti 5.19 \\\hline
 In this paper we explored automated test solutions at an application of BPMS. In the absence of supporting the functional and load tests in Bonita BPMS and Activiti was applied test tools intended to Web applications in general.
 
 %No teste funcional, com a abordagem adotada, obteve-se maior sucesso na execução dos testes e observou-se uma menor dependência dos BPMS, em comparação com o teste anterior. A tarefa de teste pode vir a ser trabalhosa, principalmente quando deseja-se testar muitas tarefas e fluxos que um processo de negócio pode ter.
-In the Functional test, with the approach taken, it obtained greater success in the execution of tests and was observed less reliance on BPMS. The test task may prove to be cumbersome, especially when you want to test many tasks and flows that a business process can have.
+In the Functional test, with the approach taken, it obtained greater success in the execution of tests and low dependence was observed in relation to the BPMS because only a few page structures must be observed (names, iframes, etc). Two initial tasks of the process  were tested and some changes were necessary for the test run. Thus, because the necessary changes, the creation of functional testing can become very cumbersome, especially when you want to test many tasks and flows that a business process can have.
 
-
-%No que concerne ao teste de carga, este mostrou-se útil para explicar falhas observadas no trabalho anterior. Também mostrou-se um teste trabalhoso, ou até inviável, dependendo do BPMS usado. A experiência com dois BPMS fortaleceu essa conclusão, pois ocorreram situações distintas: com Bonita o teste foi bem sucedido, porém com Activiti o teste não pôde ser executado, já que não se conseguiu reproduzir todas requisições.
-
-Regarding the load test, it was useful to explain failures observed in previous work. Also proved to be a laborious test, or even impossible, depending on the BPMS used. Experience with two different versions of two BPMS strengthened this conclusion because there were different situations, with Bonita in version 5.7.2 the test was successful, but with the others tools the test could not be executed, since it failed to reproduce all requests. 
+Regarding the load test with JMeter, it was useful to explain failures observed in previous work with the application created with Bonita 5.7.2. Also proved to be a laborious test, or even impossible, depending on the BPMS used. Experience with two different versions of two BPMS strengthened this conclusion because there were different situations, with Bonita in version 5.7.2 the test was successful, but with the others tools the test could not be executed, since it failed to reproduce all requests. 
 %teste de carga com o selenium...
-
+Por outro lado, o teste de carga realizado com o Selenium e o TestNG possibilitou ...
+%Os valores obtidos.. compara com o jmeter
 
 %De modo geral, a experiência mostrou que, sob certas condições, é viável testar aplicações de BPMS com ferramentas de teste para sistemas Web. A principal condição, no caso considerado, foi o direcionamento dos testes a uma tarefa inicial do processo, identificada como gargalo. Como o tempo e esforço para uma única tarefa foi significativo, essa abordagem pode se tornar inviável caso seja necessário aumentar a cobertura dos testes.
 
 %De modo geral, como lições aprendidas temos que, sob certas condições, é viável testar aplicações de BPMS com ferramentas de teste para sistemas Web. A principal condição, no caso considerado, foi o direcionamento dos testes a uma tarefa inicial do processo, identificada como gargalo. Como o tempo e esforço para uma única tarefa foi significativo, essa abordagem pode se tornar inviável caso seja necessário estender os testes a muitas tarefas de um processo.
-Overall, how lessons learned have that under certain conditions it is feasible to test application of BPMS with testing tools for Web systems. The main condition in the case considered, was the targeting of testing an initial task of the process, identified as neck. As the time and effort to a single task was significant, this approach can become unwieldy if necessary extend the tests to many tasks of a process.
+Overall, how lessons learned we have that under certain conditions it is feasible to test application of BPMS with testing tools for Web systems. The main condition in the case considered, was the targeting of testing an initial task of the process, identified as neck. As the time and effort to a single task was significant, this approach can become unwieldy if necessary extend the tests to many tasks of a process.
 
 Another aspect to consider is that when the BPMS implements the interaction with the user and/or servers, the developer do not to choose and control all technologies used. This facility, however, may make it difficult to test automation with external tools, that benefit from knowledge about the implementation (eg, use of \emph{iframes}, Ajax, in the experience in question).
 
