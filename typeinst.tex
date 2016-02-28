@@ -17,7 +17,7 @@
 
 
 \documentclass[runningheads,a4paper]{llncs}
-
+\usepackage[utf8]{inputenc}
 \usepackage{amssymb}
 \setcounter{tocdepth}{3}
 \usepackage{graphicx}
@@ -251,10 +251,12 @@ Recognition of all fields captured WITH code change & Total & Total & Total & To
 \subsection{Load Tests}
 %Os testes de carga inicialmente foram realizados utilizando a ferramenta JMeter\footnote{Apache JMeter. Available at: www.jmeter.apache.org} no entanto, devido a problemas encontrados durante a execuçao dos testes, tambem foi utiizada uma versao alterantiva de teste atraves do Selenium. Nos testes de carga foi avaliado o desempenho da execuçao da primeira tarefa da processo, pois esta pode ser considerada um "gargalo" devido ao grande numero de usuarios que pode iniciar um processo simultaneamente.
 
-Load tests were first conducted using the JMeter\footnote{Apache JMeter. Available at: www.jmeter.apache.org} tool. However, due to problems encountered during the tests, it was also used an alternative test using Selenium. In the load testing it was evaluated the performance of the execution of the first task of the process as it can be considered a "bottleneck" because of the number of users who can start a process simultaneously.
+%Load tests were first conducted using the JMeter tool. However, due to problems encountered during the tests, it was also used an alternative test using Selenium. 
+In the load testing it was evaluated the performance of the execution of the first task of the process as it can be considered a "bottleneck" because of the number of users who can start a process simultaneously.
 
 %Testes de carga em aplicações Web são tipicamente realizados gerando-se múltiplas requisições HTTP ao servidor, de forma controlada. Para isso, uma etapa crítica é a identificação das requisições que devem ser reproduzidas. Existem diversas ferramentas que se propõem a facilitar este tipo de teste, dentre as quais pode-se citar: JMeter\footnote{Apache JMeter. Disponível em: www.jmeter.apache.org.}, The Grinder\footnote{The Grinder. Disponível em: www.grinder.sourceforge.net/.} e WebLOAD\footnote{WebLOAD. Disponível em: radview.com/webload-download/.}. Todas são ferramentas \emph{open source} e possuem diversas opções, mas escolheu-se a ferramenta JMeter pela sua funcionalidade ``proxy server'' que é de grande auxílio à captura das requisições.
-Load tests on web applications is typically performed by generating multiple HTTP requests to the server in a controlled manner. For this, a critical step is to identify the requests that should be reproduced. There are several tools that purport to facilitate this type of testing, among which we can mention: JMeter, The Grinder\footnote{The Grinder. Available at: www.grinder.sourceforge.net/} and WebLOAD\footnote{WebLOAD. Available at: www.radview.com/webload-download/}. All tools are open source and have several options, but chose to JMeter tool for its functionality "proxy server" which is a great help to the capture of requests.
+\subsubsection{Load Tests with Apache JMeter}
+Load tests on web applications are typically performed by generating multiple HTTP requests to the server in a controlled manner. For this, a critical step is to identify the requests that should be reproduced. There are several tools that purport to facilitate this type of testing, among which we can mention: JMeter, The Grinder\footnote{The Grinder. Available at: www.grinder.sourceforge.net/} and WebLOAD\footnote{WebLOAD. Available at: www.radview.com/webload-download/}. All tools are open source and have several options, but chose to JMeter tool for its functionality "proxy server" which is a great help to the capture of requests.
 
 %Um teste da aplicação com JMeter consiste em quatro etapas: capturar as requisições HTTP, exportar as requisições (formato .jrxml para JMeter), configurar o plano de teste e, por fim, executar o teste no JMeter. A aplicação gera diferentes requisições HTTP que precisam ser identificadas e interpretadas, para serem reproduzidas automaticamente. O emprego de tecnologias Web com processamento assíncrono, do lado do cliente, pode dificultar esta etapa, pois uma ação do usuário pode não gerar imediatamente uma requisição ao servidor. Além disso, em aplicações de BPMS, diversos usuários atuam sobre diferentes tarefas de um mesmo processo, de modo que as requisições HTTP carregam chaves identificando usuários e processos.
 An application test with JMeter consists of four steps: capture HTTP requests, export requests (.jrxml format for JMeter), set up the test plan and, finally, run the test in JMeter. The application generates different HTTP requests that need to be identified and interpreted to be played automatically. The use of Web technologies with asynchronous processing, client-side, can hinder this step because a user action can not immediately generate a request to the server. Moreover, in BPMS applications, many users act on different tasks in a same process, so that the HTTP requests that carry user identifying keys and processes.
@@ -272,6 +274,7 @@ In the tests in version 7.1.2 of Bonita, capture and analysis of requests was ex
 % atualizar testes funcionais
 
 %Como os testes funcionais apresentaram sucesso em todas as versões testadas de ambas as ferramentas, optou-se por verificar uma forma de realizar o teste de carga através das capturas realizadas com o Selenium. Para isso, escolheu-se a ferramenta TestNG\footnote{TestNG. Available at:. www.testng.org} que é um framework comumente utilizado para automatizar testes com o Selenium ~\cite{bindal2014test}. O TestNG possui uma notação que permite escolher o número de vezes que o teste deve ser executado e o número de threads, assim é possível simular a execução de diversas threads simultaneamente. 
+\subsubsection{Load Tests with Selenium and TestNG}
 As the functional tests with Selenium were successful executed in all tested versions of both tools, 
 unlike load test with JMeter, it was decided to verify the existence of a way to perform load testing through the information obtained from the Selenium. 
 %Para utilizar os testes foram analisadas diversas ferramentas como: {citar aqui}. Por fim
@@ -315,16 +318,9 @@ Activiti 5.19 & Unable to run the test & Able to run the test \\\hline
 
 \subsubsection{Load Test Results}
 
-%Devido aos problemas relatados na seção anterior, os testes de carga com o JMeter só puderam ser realizados na aplicação criada com Bonita. A fim de testar o comportamento do sistema com diferentes níveis de carga, foram executados testes com 1, 50, 100 e 200 usuários virtuais e foram analisadas requisições referentes a etapas essenciais para iniciar o processo: efetuar login, exibir a página inicial do Bonita, selecionar o processo, exibir o formulário inicial (Aluno solicita ACG) e enviar o formulário preenchido. A aplicação foi hospedada em um servidor SGI Altix XE 210 com 24 GB de RAM, acessível por uma rede Fast Ethernet.
-Due to problems reported in the previous section, load tests with JMeter could only be achieved in the implementation created with the version 5.7.2 of Bonita. In order to test the system behavior with different load levels, tests were performed with 1, 50, 100 and 200 virtual users and requests were analyzed regarding the essential steps to begin the process: log in, view the Bonita's homepage, select the process, show the initial form and send the completed form. The application is hosted on a SGI Altix XE 210 server with 24GB of RAM, accessible by a Fast Ethernet network.
+Due to problems reported in the previous section, load tests with JMeter could only be achieved in the implementation created with the version 5.7.2 of Bonita. In order to test the system behavior with different load levels, tests were performed with 1, 50, 100 and 200 virtual users and were analyzed requests regarding the essential steps to begin the process: Login, view the Bonita's homepage, select the process, show the first form and send the completed form. %The application is hosted on a SGI Altix XE 210 server with 24GB of RAM, accessible by a Fast Ethernet network.
 
-%Devido aos problemas relatados na seção anterior, os testes de carga só puderam ser realizados com a aplicação criada com Bonita. A fim de testar o comportamento do sistema com diferentes níveis de carga, foram executados testes com 1, 50, 100 e 200 usuários virtuais/acessos simultâneos e foram analisadas as requisições referentes às etapas: efetuar login, exibir a página inicial do Bonita, selecionar o processo, exibir o formulário inicial (Aluno solicita ACG) e enviar o formulário preenchido. Os testes foram executados em um servidor com 24 GB de RAM e 2 processadores Intel Xeon E5520, com 4 núcleos. 
-
-%Os tempos de resposta de cada etapa, em função do número de usuários, podem ser vistos na Tabela \ref{tab:resultadoCarga}. Os resultados mais alarmantes são para 200 usuários virtuais, em que o tempo médio de resposta na requisição de login foi de 10.149 ms, ou seja, aproximadamente 10 s, o que é um tempo de resposta alto. A média de tempo de resposta para todas requisições foi de 3.111 ms (ou seja, 3 s), e o desvio padrão foi de 13.088. Além dos altos tempos de resposta, o teste com 200 usuários virtuais apresentou taxas de erro, em algumas requisições, que não foram encontradas com um número menor de usuários. Por exemplo, a requisição que executou login apresentou uma taxa de 2\% de erro e, ao todo, as requisições obtiveram uma taxa de erro de 7.82\%. Os erros ocorreram devido a requisições sem resposta. %Confrontando tais erros com logs do Bonita, estes indicam timeouts internos em alguns métodos, mas os dados não permitiram identificar precisamente a origem dos erros.
-
-%resultados semelhantes ao teste com jmeter
-
-The response times of each stage, depending on the number of users, can be seen in Table \ref{tab:resultadoCarga}. The most alarming results are for 200 virtual users, where the average response time on the login request was for 10,149 ms, or approximately 10 seconds, which is a high response time. The average response time for all requests was 3111 ms (i.e., 3 s), and the standard deviation was 13,088. Besides high response times, the test showed virtual users 200 with error rates in some requests which were not found with a smaller number of users. For example, a request that has performed login showed a rate of 2\% error and, in total, the requests have obtained an error rate of 7.82\%. The error occurred because of unanswered requests.
+The response times of each stage, depending on the number of users, can be seen in Table \ref{tab:resultadoCarga}. The most alarming results are for 200 virtual users, where the average response time on the login request was for 6.930 ms, or approximately 6 seconds, which is a high response time. The average response time for all requests in the test with 200 virtual users was 2.903 ms (i.e., 3 s). Besides high response times, the test showed virtual users 200 with error rates in some requests which were not found with a smaller number of users. For example, a request that has performed login showed a error rate of 1.99\% and, in total, the requests have obtained an error rate of 6.98\%. The errors occurred because of unanswered requests.
 
 %\begin{table}
 %{\scriptsize
@@ -343,17 +339,17 @@ The response times of each stage, depending on the number of users, can be seen 
 %\end{table}
 
 \begin{table}
-%{\scriptsize
+{\scriptsize
 \centering
 \begin{tabular}{p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}}
 \hline
-Users & Login & Home Page & Process selection & First form & Send form \\\hline
-1 & 126 & 32 & 38 & 80 & 73\\\hline
-50 & 597 & 191 & 179 & 368 & 152\\\hline
-100 & 1972 & 571 & 552 & 760 & 694\\\hline
-200 & 10.149 & 3.239 & 934 & 2.122 & 1.918\\\hline
+Users & Login & Home Page & Process selection & First form & Send form\\\hline
+1 & 65 & 20 & 19 & 52 & 42\\\hline
+50 & 387 & 101 & 92 & 260 & 90\\\hline
+100 & 1072 & 490 & 473 & 601 & 564\\\hline
+200 & 6.930 & 2.345 & 876 & 1.611 & 1.087\\\hline
 \end{tabular}
-%}
+}
 \caption{Average response times, in milliseconds}
 \label{tab:resultadoCarga}
 \end{table}
@@ -361,11 +357,14 @@ Users & Login & Home Page & Process selection & First form & Send form \\\hline
 
 %De forma geral, portanto, o teste de carga com JMeter atingiu seus objetivos e ajuda a explicar a sobrecarga que ocorreu com a aplicação em produção, quando muitos alunos tentaram acessar o formulário inicial numa data limite. No entanto, é importante ressaltar que este teste foi executado apenas em etapas iniciais do processo e, mesmo assim, já foi trabalhoso e consumiu algumas horas de preparação, por exigir uma análise profunda das requisições HTTP para executar os testes com sucesso. Ao todo, foram capturadas cerca de 100 requisições só nestas etapas, portanto estima-se que o teste de uma tarefa mais ao final do processo possa se tornar inviável com JMeter, por demandar a identificação e interpretação de muitas requisições. Outra observação importante, nesta experiência, é que esta abordagem de teste sofre com a dependência das tecnologias Web empregadas pelo BPMS. %pois, das quatro versoes testadas, em apenas uma delas foi possivel realizar o teste com sucesso e isso ocorreu principalmente devido a forma como os BPMS sao implementados
 
-Overall, the load testing with JMeter helps explain the overload that occurred with the application in production, when many students tried to access the initial form in a deadline. However, it is important to note that this test was performed only in the early stages of the process and, even then, was already laborious and consumed a few hours of preparation, because it requires a deep analysis of HTTP requests to run the tests successfully. In all, about 100 requests were captured only in these steps, therefore it is estimated that the testing of a task towards the end of the process can become unwieldy with JMeter, it demands the identification and interpretation of many requests. Another important observation in this experiment is that this testing approach suffers from dependence on Web technologies used by BPMS, therefore, the four versions tested in only one of them it was possible to conduct the test successfully and this was mainly due to how the BPMS are implemented.
-
+Overall, the load testing with JMeter helps explain the overload that occurred with the application in production, when many students tried to access the initial form in a deadline, mainly because the test with 200 users has created a charge that led some pages to stop responding. However, it is important to note that this test was performed only in the early stages of the process and, even then, was already laborious and consumed a few hours of preparation, because it requires a deep analysis of HTTP requests to run the tests successfully. In all, about 100 requests were captured only in these steps, therefore it is estimated that the testing of a task towards the end of the process can become unwieldy with JMeter, it demands the identification and interpretation of many requests. Another important observation in this experiment is that this testing approach suffers from dependence on Web technologies used by BPMS, therefore, the four versions tested in only one of them it was possible to conduct the test successfully and this was mainly due to how the BPMS are implemented.
 
 %teste de carga com selenium + testng
-On the other hand, in the load test performed with Selenium and TestNG all versions of the tools could be successfully tested. Because it is a load test conducted in a different way of JMeter, without HTTP requests, could not be analyzed on isolated results of each request. The result of TestNG test shows the test runtime in the execution of the method of the test. In the Table \ref{tab:resultadoCargaSelenium} can be seen a summary of the average response time for the load test of the first task of the process for each version of the tools for each amount of virtual users/threads.
+On the other hand, in the load test performed with Selenium and TestNG all versions of the tools could be successfully tested. These tests were also performed simulating 1, 50, 100 and 200 virtual users/threads but, because it is a load test conducted in a different way of JMeter (without HTTP requests) could not be analyzed on isolated results of each request or the response time. At the end of the test run, the TestNG generate reports that display the time that each execution (each thread) took to complete and total test execution time. 
+
+In the execution time is included the time of the entire interaction with the application, since this is effectively executed by each thread, different from test with JMeter where the requests are simulated and the response time is measured. For example, the average execution time of each thread in all of the tools tested and for any amount of threads was the same: about 14s. Thus, it is impossible to compare the runtime with the response time obtained in JMeter because it reflects more about client behavior than server.
+
+However, it was possible to analyze the server behavior front a large number of simultaneous accesses from other types of information. In tests with 200 threads, for example, some threads have failed due to pages that have stopped responding, the only test that returns no errors in this case was the test with the Activiti tool in version 19.5. The server logs were also observed some errors in the lack of response. This behavior is similar to what happened with testing with JMeter. In the Table \ref{tab:resultadoCargaSelenium} can be seen in the summary of server behavior for each tool and for each number of virtual users/threads.
 
 \begin{table}
 %{\scriptsize
@@ -373,17 +372,18 @@ On the other hand, in the load test performed with Selenium and TestNG all versi
 \begin{tabular}{p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}}
 \hline
 Users & Bonita 5.7.2 & Bonita 7.1.2 & Activiti 5.14 & Activiti 5.19 \\\hline
-1 & xx & xx & xx & xx \\\hline
-50 & xx & xx & xx & xx \\\hline
-100 & xx & xx & xx & xx \\\hline
-200 & xx & xx & xx & xx \\\hline
+1 & No failure & No failure & No failure & No failure \\\hline
+50 & No failure & No failure & No failure & No failure \\\hline
+100 & Some failure & No failure & No failure & No failure \\\hline
+200 & Some failure & Some failure & Some failure & Some failure \\\hline
 \end{tabular}
 %}
-\caption{Average response times, in milliseconds}
+\caption{Summary of server behavior}
 \label{tab:resultadoCargaSelenium}
 \end{table}
 
-%analise do resultados, precisa ter os resultados finais primeiro
+Thus, it can be said that the load test with TestNG achieved its objectives because it was useful to simulate a large number of users performing actions in the system simultaneously and experienced similar behavior to what was observed in tests with JMeter. The approach using TestNG and Selenium has the advantage of being possible to carry out tests on all the tools analyzed, showing that it is not dependent on the tool structure. However, as observed in other tests, the task of running the tests can become cumbersome if you need to test many tasks or many process flows. This approach also has the advantage of being able to reuse code created in the functional test, which allows shorten test creation.
+
 
 \section{Considerações Finais}\label{s:conclu}
 %revisar aqui
@@ -395,9 +395,7 @@ In this paper we explored automated test solutions at an application of BPMS. In
 %No teste funcional, com a abordagem adotada, obteve-se maior sucesso na execução dos testes e observou-se uma menor dependência dos BPMS, em comparação com o teste anterior. A tarefa de teste pode vir a ser trabalhosa, principalmente quando deseja-se testar muitas tarefas e fluxos que um processo de negócio pode ter.
 In the Functional test, with the approach taken, it obtained greater success in the execution of tests and low dependence was observed in relation to the BPMS because only a few page structures must be observed (names, iframes, etc). Two initial tasks of the process  were tested and some changes were necessary for the test run. Thus, because the necessary changes, the creation of functional testing can become very cumbersome, especially when you want to test many tasks and flows that a business process can have.
 
-Regarding the load test with JMeter, it was useful to explain failures observed in previous work with the application created with Bonita 5.7.2. Also proved to be a laborious test, or even impossible, depending on the BPMS used. Experience with two different versions of two BPMS strengthened this conclusion because there were different situations, with Bonita in version 5.7.2 the test was successful, but with the others tools the test could not be executed, since it failed to reproduce all requests. 
-%teste de carga com o selenium...
-Por outro lado, o teste de carga realizado com o Selenium e o TestNG possibilitou ...
+Regarding the load test with JMeter, it was useful to explain failures observed in previous work with the application created with Bonita 5.7.2. Also proved to be a laborious test, or even impossible, depending on the BPMS used. Experience with two different versions of two BPMS strengthened this conclusion because there were different situations, with Bonita in version 5.7.2 the test was successful, but with the others tools the test could not be executed, since it failed to reproduce all requests. On the other hand, the load test performed with Selenium and TestNG enabled all analyzed tools to be tested, making it a good alternative for load test.
 %Os valores obtidos.. compara com o jmeter
 
 %De modo geral, a experiência mostrou que, sob certas condições, é viável testar aplicações de BPMS com ferramentas de teste para sistemas Web. A principal condição, no caso considerado, foi o direcionamento dos testes a uma tarefa inicial do processo, identificada como gargalo. Como o tempo e esforço para uma única tarefa foi significativo, essa abordagem pode se tornar inviável caso seja necessário aumentar a cobertura dos testes.
