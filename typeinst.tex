@@ -166,25 +166,22 @@ Thus, there was a survey of tools intended for Web application testing and was s
 
 %Para executar testes funcionais em aplicações Web, pode-se utilizar ferramentas livres como Selenium\footnote{Selenium. Available at: www.seleniumhq.org.}, Watir\footnote{Watir. Available at: www.watir.com.} ou Geb\footnote{Geb. Available at: www.gebish.org.}. Para este trabalho, escolheu-se a ferramenta Selenium, aliada ao Cucumber-JVM\footnote{Cucumber-JVM. Available at: www.github.com/cucumber/cucumber-jvm.} para descrição dos testes. A escolha foi motivada pelo grande número de referências ao Selenium na Web, confirmadas por um trabalho que apresentou resultados satisfatórios com Selenium e Cucumber~\cite{sbqs2013}.
 
-To perform functional tests on Web applications, you can use free tools like Selenium\footnote{Selenium. Available at: www.seleniumhq.org.}, Watir\footnote{Watir. Available at: www.watir.com.} or Geb\footnote{Geb. Available at: www.gebish.org.}.For this work, we picked up the Selenium tool, combined with Cucumber-JVM \footnote{Cucumber-JVM. Available at: www.github.com/cucumber/cucumber-jvm.} for a description of the tests. %The choice was motivated by the large number of references to the Selenium web, confirmed by a work which showed satisfactory results with Selenium and Cucumber ~ \ cite {} sbqs2013.
+To perform functional tests on Web applications, you can use free tools like Selenium\footnote{Selenium. Available at: www.seleniumhq.org.}, Watir\footnote{Watir. Available at: www.watir.com.} or Geb\footnote{Geb. Available at: www.gebish.org.}. For this work, we picked up the Selenium tool that is an integrated development environment for automated test scripts, it is implemented as a Firefox extension, and allows to record, edit, and debug tests. Also, combined with Selenium, we picked up the Cucumber-JVM tool \footnote{Cucumber-JVM. Available at: www.github.com/cucumber/cucumber-jvm.} for a description of the tests, Cucumber is a tool that provides a high-level interface that allows to write tests in natural language. The choice was motivated by the large number of references to the Selenium ~\cite{testautomationframework, automatingfunctionaltests}, confirmed by works which showed satisfactory results with Selenium and Cucumber ~\cite{cucumberandselenium,sbqs2013}.
 
 %Com estas ferramentas, o processo para a execução de um teste funcional é composto de: captura da interação do usuário com o navegador (Selenium IDE), exportação do código gerado (Selenium IDE), criação do cenário de teste (Cucumber), criação das definições dos passos do teste (Cucumber), criação dos métodos para cada passo (Java) e execução do teste (Selenium WebDriver). O cenário de teste é a definição, em ordem de execução, dos passos que são executados na aplicação, bem como dos resultados esperados. Para este trabalho, definiu-se um cenário em que o aluno faz login e preenche 2 formulários referentes à primeira tarefa do processo e após isso um outro usuário faz o login e executa a segunda tarefa do processo disponibilizada para ele. Para este cenário, foram criados métodos variando as entradas nos formulários. Como o processo testado é o mesmo em todos os BPMS, o cenário de teste também é o mesmo. 
 
-With these tools, the process for running a functional test consists of: capture the user interaction with the browser (Selenium IDE), export the generated code (Selenium IDE), creation of test scenario (Cucumber), creation of definitions of test steps (Cucumber), creation of methods for each step (Java) and test execution (Selenium WebDriver). The test scenario is a definition, in order of execution of steps that run the application, and the expected results. For this work, it was set up a scenario in which the student logs in the application and fills 2 forms as a first task of the process and after that another user logs in and runs the second task of the process available to him. For this scenario, methods were created by varying the entries on the forms. As the tested process is the same in all BPMS, the test scenario is also the same.
-%For this work, was set up a scenario in which the student logs in and fills 2 forms as a first task of the process. For this scenario, methods were created by varying the entries on the forms. As the tested process is the same in both BPMS, the test scenario is also the same.
-%adicionei mais uma etapa em todos os testes com as duas versões da ferramenta
+With these tools, the process for running a functional test consists of: capture the user interaction with the browser using Selenium, export the generated code created with Selenium, creation of test scenario using Cucumber notation, creation of definitions of test steps (Cucumber/Java) in a file called \emph{Step Definition}, creation of code for each step (Java) and test execution (Selenium WebDriver). The test scenario is a flow of events through which the application that will be tested will pass, for each step of the scenario should also be created by step definition to be run on \emph{StepDefinition} file. For example, in the case of the test combined with Selenium, if the step of the scenario is "Fill Form" the \emph{StepDefinition} should will call the Selenium code responsible for performing the filling of the form.
 
-%Para as aplicações de ambos os BPMS, inicialmente ocorreram erros na execução dos testes, relativos à localização de campos nos formulários Web. Verificou-se que os campos estavam localizados em um \emph{iframe} e, embora a captura da interação ocorresse sem problemas, o código gerado não selecionava o \emph{iframe} e por isso não encontrava os campos. Assim, foi necessário utilizar um método do Selenium para acessar o \emph{iframe} antes de selecionar o elemento desejado.
+In a previous work~\cite{sbqs2015}, versions 5.7.2 Bonita and 5.14 Activiti were tested. In these first tests was analysed only one task of the process, and because of this, were used a different scenario. As a way to broaden the experience also tests were then carried out with the latest versions of BPMS: 7.1.2 of Bonita and 5.19 of Activiti. Also the test scenario has been updated for the four different versions in order to be tested one more task. 
 
-
-%Em um trabalho anterior, foram testadas as versões 5.7.2 do Bonita e 5.14 do Activiti. Nestes primeiros testes foi analisada a execução de apenas uma tarefa do processo e, devido a isso, foi utilizado um cenário diferente. Como forma de ampliar a experiência, foram então realizados testes também com as versões mais recentes dos BPMS sendo elas: 7.1.2 do Bonita e 5.19 do Activiti. Também foi atualizado o cenário de teste para as 4 versões diferentes, a fim de ser testada mais uma tarefa.%
-
-In a previous work~\cite{sbqs2015}, versions 5.7.2 Bonita and 5.14 Activiti were tested. In these first tests was analysed only one task of the process, and because of this, were used a different scenario. As a way to broaden the experience also tests were then carried out with the latest versions of BPMS: 7.1.2 of Bonita and 5.19 of Activiti. Also the test scenario has been updated for the four different versions in order to be tested one more task. In the Figure \ref{fig:cenario2}, can be viewed the scenario used in the tests with the four versions.
+In the Figure \ref{fig:cenario2}, can be viewed the scenario used in the tests with the four versions. In fact, the test consists of two scenarios: in the first scenario the student logs in the application and fills 2 forms as a first task of the process (Students requests use of the activity) and in the second scenario another user logs in and runs the second task of the process available to him (Secretary evaluates the activity). For these scenarios were also used "Examples", which allows you to test the same scenario with a varied number of pre-defined entries increasing the test coverage, each list item "Examples" is a line in a CSV file containing the entries that are tested in the execution. As the tested process is the same in all BPMS, the test scenario is also the same for all applications.
+%For this scenarios, methods were created by varying the entries on the forms. 
+%Para esses cenarios tambem foram utilizados "Examples", que permite testar o mesmo cenario com um variado numero de entradas pre-definidas aumentadno assim a cobertura dos testes, cada item da lista "Examples" representa uma linha em um arquivo CSV contendo as entradas a serem testadas nessa execuçao.
 
 \begin{figure}[ht]
 \centering
 \includegraphics[width=0.9\textwidth]{figuras/cenario2.png}
-\caption{Test Scenario}
+\caption{Test Scenarios}
 \label{fig:cenario2}
 \end{figure}
 
@@ -433,6 +430,21 @@ de~Moura, J.~L. et~al.: Gestão de processos de negócio em curso de sistemas de
 Forrester Research.: The forrester wave: {BPM} suites, {Q1} (2013)
 Graham, D. and Fewster, M.
 
+\bibitem{testautomationframework}
+Wang, Fei, and Wencai Du.: A test automation framework based on web. In {\em 2012 IEEE/ACIS 11th International Conference on}, pp. 683-687, (2012)
+
+\bibitem{automatingfunctionaltests}
+Holmes, A., and Kellogg, M.: Automating functional tests using selenium. In {\em Agile Conference}, pp. 6-pp, (2006)
+
+\bibitem{automatingfunctionaltests}
+BOWERS, A. and BELL, J.: Automated testing with Selenium and Cucumber. In {\em Agile Conference}, pp. 6-pp, (2006)
+
+\bibitem{cucumberandselenium}
+Pannu, Yadvinder Singh: Test Automation Using Cucumber and Selenium WebDriver. 
+
+\bibitem{sbqs2013}
+Chiavegatto, R. et~al.: Especificação e automação colaborativas de testes utilizando a técnica {BDD}. In {\em XII Simpósio Brasileiro de Qualidade de Software}, pp. 334--341, (2013)
+
 \bibitem{sbqs2015}
 de Moura, J.L. and Charão, A.: Automação de Testes em Aplicações de BPMS: um Relato de Experiência. In {\em XIV Simpósio Brasileiro de Qualidade de Software}, pp.
   212--219, (2015)
@@ -444,10 +456,6 @@ Winter Green Research.: Business process management (BPM) cloud, mobile, and pat
 Bourque, P. e Fairley, R.~E.: Guide to the Software Engineering Body of Knowledge (SWEBOK), Version 3.0. IEEE Computer Society (2014)
 
 \bibitem{evoke} Chetty, N.~K.: How to perform workflow testing for BPM applications (2014), \url{http://www.evoketechnologies.com}
-
-%\bibitem{sbqs2013}
-%Chiavegatto, R. et~al.: Especificação e automação colaborativas de testes utilizando a técnica {BDD}. In {\em XII Simpósio Brasileiro de Qualidade de Software}, pp.
- % 334--341, (2013)
 
 \bibitem{bindal2014test}
 Bindal, P. and Gupta, S.: Test Automation Selenium WebDriver using TestNG. In {\em Journal of Engineering Computers \& Applied Sciences}, pp.
