@@ -132,7 +132,7 @@ In that previous work, we implemented the process with the Bonita BPM tool \foot
 
 \begin{figure}[ht]
 \centering
-\includegraphics[width=0.9\textwidth]{figuras/diagramaACGs2.png}
+\includegraphics[width=0.9\textwidth]{figuras/diagramaACGs3.png}
 \caption{BPMN process diagram}
 \label{fig:diagrama}
 \end{figure}
@@ -162,7 +162,7 @@ In planning automated tests, priority was given to the test of aspects that in f
 %Assim, realizou-se um levantamento de ferramentas destinadas ao teste de aplicações Web e selecionou-se as julgadas mais promissoras, antes de partir-se para o detalhamento e execução dos testes. Os \emph{scripts} que configuram os testes estão disponíveis para consulta em http://www.inf.ufsm.br/~andrea/bpmtest-scripts.zip.
 Thus, there was a survey of tools intended for Web application testing and was selected the most promising judged before departing to the detailing and execution of tests. The scripts that configure the tests are available for consultation in http://www.inf.ufsm.br/$\sim$andrea/bpmtest-scripts.zip.
 
-\subsection{Functional Tests}
+\subsection{Functional Tests with Selenium and Cucumber}
 
 %Para executar testes funcionais em aplicações Web, pode-se utilizar ferramentas livres como Selenium\footnote{Selenium. Available at: www.seleniumhq.org.}, Watir\footnote{Watir. Available at: www.watir.com.} ou Geb\footnote{Geb. Available at: www.gebish.org.}. Para este trabalho, escolheu-se a ferramenta Selenium, aliada ao Cucumber-JVM\footnote{Cucumber-JVM. Available at: www.github.com/cucumber/cucumber-jvm.} para descrição dos testes. A escolha foi motivada pelo grande número de referências ao Selenium na Web, confirmadas por um trabalho que apresentou resultados satisfatórios com Selenium e Cucumber~\cite{sbqs2013}.
 
@@ -174,7 +174,7 @@ With these tools, the process for running a functional test consists of: capture
 
 In a previous work~\cite{sbqs2015}, versions 5.7.2 Bonita and 5.14 Activiti were tested. In these first tests was analysed only one task of the process, and because of this, were used a different scenario. As a way to broaden the experience also tests were then carried out with the latest versions of BPMS: 7.1.2 of Bonita and 5.19 of Activiti. Also the test scenario has been updated for the four different versions in order to be tested one more task. 
 
-In the Figure \ref{fig:cenario2}, can be viewed the scenario used in the tests with the four versions. In fact, the test consists of two scenarios: in the first scenario the student logs in the application and fills 2 forms as a first task of the process (Students requests use of the activity) and in the second scenario another user logs in and runs the second task of the process available to him (Secretary evaluates the activity). For these scenarios were also used "Examples", which allows you to test the same scenario with a varied number of pre-defined entries increasing the test coverage, each list item "Examples" is a line in a XLSX file containing the entries that are tested in the execution. As the tested process is the same in all BPMS, the test scenario is also the same for all applications.
+In the Figure \ref{fig:cenario2}, can be viewed the scenario used in the tests with the four versions. In fact, the test consists of two scenarios: in the first scenario the student logs in the application and fills the forms of the first task of the process (Students requests use of the activity) and in the second scenario another user logs in and runs the second task of the process available to him (Secretary evaluates the activity). For these scenarios were also used "Examples", which allows you to test the same scenario with a varied number of pre-defined entries increasing the test coverage, each list item "Examples" is a line in a XLSX file containing the entries that are tested in the execution. As the tested process is the same in all BPMS, the test scenario is also the same for all applications.
 %For this scenarios, methods were created by varying the entries on the forms. 
 %Para esses cenarios tambem foram utilizados "Examples", que permite testar o mesmo cenario com um variado numero de entradas pre-definidas aumentadno assim a cobertura dos testes, cada item da lista "Examples" representa uma linha em um arquivo CSV contendo as entradas a serem testadas nessa execuçao.
 
@@ -195,35 +195,13 @@ In application with version 5.14 of Activiti also ran into other trouble. Unlike
 
 This problem did not occur with the version 5.19 of Activiti as well as in the two versions of Bonita, the capture and execution of the elements was successful it was only needed some minor changes in the generated code.
 
-\subsubsection{Functional Tests Results}
-%Os testes funcionais mostraram-se mais viáveis do que os testes de carga, pois uma boa parcela da interação é executada no lado cliente, sem necessidade de lidar explicitamente das interações com o servidor. Pode-se dizer que este teste atingiu todos seus objetivos, pois permitiu reproduzir a interação do usuário, bem como criar o código para testar as aplicações com diferentes entradas, num cenário envolvendo a tarefa inicial do processo, ampliando a cobertura dos testes. O  teste funcional também reproduziu erros encontrados em produção e que tinham passado despercebidos nos testes manuais (entradas não previstas corretamente nos formulários), esses erros foram os mesmos em ambas as ferramentas BPMS, pois os formulários foram configurados de modo equivalente. 
-%The functional tests were more viable than load tests, because a good part of the interaction is performed on the client side without the need to explicitly handle the interactions with the server. It can be said that this test reached all its goals because it allowed reproduce user interaction and create the code to test applications with different inputs in a scenario involving the initial task of the process, expanding the coverage of the tests. Functional testing also reproduced errors found in production and that had gone unnoticed in manual tests (not properly provided for in the forms entries), these errors were the same in both BPMS tools because the forms were configured equivalently.
-%Os testes funcionais mostraram-se viáveis, uma boa parcela da interação é executada no lado cliente, sem necessidade de lidar explicitamente das interações com o servidor. Pode-se dizer que este teste atingiu todos seus objetivos, pois permitiu reproduzir a interação do usuário, bem como criar o código para testar as aplicações com diferentes entradas, num cenário envolvendo duas tarefas iniciais do processo, ampliando a cobertura dos testes. O  teste funcional também reproduziu erros encontrados em produção e que tinham passado despercebidos nos testes manuais (entradas não previstas corretamente nos formulários), esses erros ocorreram nas duas versões de ambas as ferramentas BPMS, pois os formulários e entradas testados foram configurados de modo equivalente. 
+\subsubsection{Functional Tests Results} 
 The functional tests proved to be viable, mainly because a good portion of the interaction is performed on the client side without the need to explicitly handle the interactions with the server. It can be said that this test reached all its goals because it allowed reproduce user interaction and create the code to test applications with different inputs, in a scenario involving two initial tasks of the process, expanding the coverage of the tests. Functional testing also reproduced errors found in production and that had gone unnoticed in manual tests (not correctly expected inputs in forms), these errors occurred in the two versions of both BPMS tools because forms and tested entries were configured equivalently.
 
 %O teste funcional também foi menos dependente do BPMS. Na Tabela \ref{tab:testeFuncional} apresenta-se um resumo das principais semelhanças e diferenças encontradas. Em ambos os casos, foram necessárias poucas modificações no código gerado pelo Selenium e Cucumber, bastando para isso inspecionar a estrutura das páginas Web. O Cucumber torna a implementação dos testes mais rápida e menos trabalhosa do que se fosse usado apenas o Selenium, abreviando a geração de código alinhado com os cenários de teste. Mesmo assim, caso seja necessário estender os testes a muitas tarefas de um processo, as modificações no código de teste podem se tornar trabalhosas.
 
 %Functional testing was also less dependent on BPMN. The Table \ref{tab:testeFuncional} presents a summary of the main similarities and differences found. In both cases, it took a few modifications to the code generated by the Selenium and Cucumber simply by inspecting the structure of Web pages. Cucumber makes the implementation of testing faster and less labor than if it were used only Selenium, shortening the code generation aligned with the test scenarios. Still, if necessary to extend the test to many tasks of a process, changes in the test code may become laborious.
 As it was possible to realize the tests successfully on all the tools and code testing is similar (only required a few modifications), it is possible to say that the functional test is little dependent to the chosen BPMS. Table \ref{tab:testeFuncional} presents a summary of the main similarities and differences found. In all cases, it took a few modifications to the code generated by the Selenium and Cucumber by simply inspecting the structure of web pages. Cucumber makes the implementation faster and less labor than if it were used only Selenium, shortening the code generation aligned with the test scenarios. Still, if necessary to extend the test to many tasks of a process, changes in the test code may become laborious.
-
-%\begin{table}
-%\centering
-%\begin{center}
-%{\scriptsize
-%\begin{tabular}{p{6cm}|l|p{4.5cm}}
-%\hline
-% & Bonita & Activiti \\\hline
-%Web Technologies & HTML, CSS, Ajax & HTML, CSS, Ajax \\\hline
-%Capture of user interaction using Selenium & Total & Partial (required manual insertion of some fields) \\\hline
-%It was possible to export the code generated by Selenium? & Yes & Yes \\\hline
-%Recognition of all fields captured WITHOUT code change & Partial & Partial \\\hline
-%Recognition of all fields captured WITH code change & Total & Total \\\hline
-%\end{tabular}
-%}
-%\caption{Comparative overview of the functional test}
-%\label{tab:testeFuncional}
-%\end{center}
-%\end{table}
 
 \begin{table}
 \centering
@@ -245,77 +223,27 @@ Recognition of all fields captured WITH code change & Total & Total & Total & To
 \end{table}
 
 
-\subsection{Load Tests}
+%\subsection{Load Tests}
 %Os testes de carga inicialmente foram realizados utilizando a ferramenta JMeter\footnote{Apache JMeter. Available at: www.jmeter.apache.org} no entanto, devido a problemas encontrados durante a execuçao dos testes, tambem foi utiizada uma versao alterantiva de teste atraves do Selenium. Nos testes de carga foi avaliado o desempenho da execuçao da primeira tarefa da processo, pois esta pode ser considerada um "gargalo" devido ao grande numero de usuarios que pode iniciar um processo simultaneamente.
 
 %Load tests were first conducted using the JMeter tool. However, due to problems encountered during the tests, it was also used an alternative test using Selenium. 
-In the load testing it was evaluated the performance of the execution of the first task of the process as it can be considered a "bottleneck" because of the number of users who can start a process simultaneously.
+%In the load testing it was evaluated the performance of the execution of the first task of the process as it can be considered a "bottleneck" because of the number of users who can start a process simultaneously.
 
-%Testes de carga em aplicações Web são tipicamente realizados gerando-se múltiplas requisições HTTP ao servidor, de forma controlada. Para isso, uma etapa crítica é a identificação das requisições que devem ser reproduzidas. Existem diversas ferramentas que se propõem a facilitar este tipo de teste, dentre as quais pode-se citar: JMeter\footnote{Apache JMeter. Disponível em: www.jmeter.apache.org.}, The Grinder\footnote{The Grinder. Disponível em: www.grinder.sourceforge.net/.} e WebLOAD\footnote{WebLOAD. Disponível em: radview.com/webload-download/.}. Todas são ferramentas \emph{open source} e possuem diversas opções, mas escolheu-se a ferramenta JMeter pela sua funcionalidade ``proxy server'' que é de grande auxílio à captura das requisições.
-\subsubsection{Load Tests with Apache JMeter}
+\subsection{Load Tests with Apache JMeter}
 Load tests on web applications are typically performed by generating multiple HTTP requests to the server in a controlled manner. For this, a critical step is to identify the requests that should be reproduced. There are several tools that purport to facilitate this type of testing, among which we can mention: JMeter, The Grinder\footnote{The Grinder. Available at: www.grinder.sourceforge.net/} and WebLOAD\footnote{WebLOAD. Available at: www.radview.com/webload-download/}. All tools are open source and have several options, but chose to JMeter tool for its functionality "proxy server" which is a great help to the capture of requests.
 
-%Um teste da aplicação com JMeter consiste em quatro etapas: capturar as requisições HTTP, exportar as requisições (formato .jrxml para JMeter), configurar o plano de teste e, por fim, executar o teste no JMeter. A aplicação gera diferentes requisições HTTP que precisam ser identificadas e interpretadas, para serem reproduzidas automaticamente. O emprego de tecnologias Web com processamento assíncrono, do lado do cliente, pode dificultar esta etapa, pois uma ação do usuário pode não gerar imediatamente uma requisição ao servidor. Além disso, em aplicações de BPMS, diversos usuários atuam sobre diferentes tarefas de um mesmo processo, de modo que as requisições HTTP carregam chaves identificando usuários e processos.
+In the load testing with JMeter it was evaluated the performance of the execution of the first task of the process as it can be considered a "bottleneck" because of the number of users who can start a process simultaneously.
+
 An application test with JMeter consists of four steps: capture HTTP requests, export requests (.jrxml format for JMeter), set up the test plan and, finally, run the test in JMeter. The application generates different HTTP requests that need to be identified and interpreted to be played automatically. The use of Web technologies with asynchronous processing, client-side, can hinder this step because a user action can not immediately generate a request to the server. Moreover, in BPMS applications, many users act on different tasks in a same process, so that the HTTP requests that carry user identifying keys and processes.
 
-%No caso da aplicação criada com Bonita, verificou-se que existe uma chave identificadora de sessão que é gerada no momento em que usuário acessa o sistema e outra chave identificadora de instância, ou seja, que identifica cada execução do processo como única, sendo criada pelo servidor no momento em que o usuário inicia o processo. Para executar os testes, portanto, foi necessário localizar a requisição em que essas chaves são geradas e utilizar a ferramenta ``Extrator de Expressão Regular'' do JMeter para obter seus valores. Já na aplicação criada com Activiti, foi inviável identificar a requisição em que as chaves são geradas, pois não há uma requisição cujo retorno (resposta do servidor) contenha valores de chaves. Esta situação leva a crer que a geração das chaves identificadoras é feita internamente pelo BPMS, ou seja, não em uma requisição HTTP e, por consequência, esta não pode ser capturada e reproduzida no JMeter.
-In the case of application created with Bonita in the version 5.7.2, it was found that there is a session identifier key that is generated at the time user accesses the system and other instance identifying key, that is, identifies each execution of the process as only being created by the server when the user initiates the process. To run the tests, so it was necessary to locate the request in which these keys are generated and use the "Regular Expression Extractor" tool of JMeter to get their values. In the application created with Activiti in the version 5.14, it was impossible to identify the request in which the keys are generated, as there is not a request whose return (server response) contains key values. This suggests that the generation of the identifying key is made internally by the BPMS, ie not in an HTTP request and therefore this can not be captured and reproduced in JMeter.
+In the case of application created with Bonita in the version 5.7.2, it was found that there is a session identifier key that is generated at the time user accesses the system and other instance identifying key, that is, identifies each execution of the process as only being created by the server when the user initiates the process. When running the test directly with the captured requests errors are returned due to non-existence of these keys, i.e. the BPMS not find in which instance/task requests are treated as the keys that were captured with the requests are no longer available in time of execution of the test. So, to run the tests, so it was necessary to locate the request in which these keys are generated and use the "Regular Expression Extractor" tool of JMeter to get their values. In the application created with Activiti in the version 5.14, it was impossible to identify the request in which the keys are generated, as there is not a request whose return (server response) contains key values. This suggests that the generation of the identifying key is made internally by the BPMS, ie not in an HTTP request and therefore this can not be captured and reproduced in JMeter.
 
-% colocar uma nova seçao aqui? 
-%Novos testes de carga com selenium + TestNG
-%Para expandir a experiencia, decidiu-se realizar o teste de carga com as versões atualmente mais recentes das ferramentas BPMS. Iniciou-se com os testes na versão 7.1.2 do Bonita,  a captura e análise das requisições foi realizada da mesma forma dos testes anteriores. No entanto, mesmo substituindo as chaves identificadores os testes não eram executados com sucesso. Algumas etapas que deveriam ser reproduzidas não eram executadas como, por exemplo, iniciar um processo ou iniciar uma tarefa. Isso leva crer que algumas etapas não são executadas de uma forma que pode ser capturada via uma requisição HTTP, problema semelhante ao que aconteceu nos teste com a versão 5.14 do Activiti. Ao realizar o teste de carga com a versão 5.19 do Activiti ocorreram os mesmos problemas observados na versão 5.14.
 In the tests in version 7.1.2 of Bonita, capture and analysis of requests was executed in the same way the previous tests. However, even replacing the identifier keys tests were not successfully executed. Some steps that should be reproduced were not performed, for example, start a process or start a task. This leads to believe that some steps are not performed in a way that can be captured via an HTTP request, problem similar to what happened in test with the version 5.14 of BPMS Activiti. When performing the load test with the 5.19 version of Activiti occurred the same problems seen in version 5.14, it was impossible to find where the identifying keys are generated.
 
 % - também tentei com a versão 6.5.4 e foi pior
-% - Testes funcionais funcionaram em todas...
-% atualizar testes funcionais
+\subsubsection{Test results with Apache JMeter}
 
-%Como os testes funcionais apresentaram sucesso em todas as versões testadas de ambas as ferramentas, optou-se por verificar uma forma de realizar o teste de carga através das capturas realizadas com o Selenium. Para isso, escolheu-se a ferramenta TestNG\footnote{TestNG. Available at:. www.testng.org} que é um framework comumente utilizado para automatizar testes com o Selenium ~\cite{bindal2014test}. O TestNG possui uma notação que permite escolher o número de vezes que o teste deve ser executado e o número de threads, assim é possível simular a execução de diversas threads simultaneamente. 
-\subsubsection{Load Tests with Selenium and TestNG}
-As the functional tests with Selenium were successful executed in all tested versions of both tools, 
-unlike load test with JMeter, it was decided to verify the existence of a way to perform load testing through the information obtained from the Selenium. 
-%Para utilizar os testes foram analisadas diversas ferramentas como: {citar aqui}. Por fim
-
-To perform the load tests with Selenium were analyzed and tested different tools such as: Browser Mob\footnote{Browser Mob Proxy. Available at: www.bmp.lightbody.net}, JMeter WebDriver Sampler\footnote{JMeter WebDriver Sampler Plugin. Available at: www.jmeter-plugins.org/wiki/WebDriverSampler}, Selenium Grid\footnote{Selenium Grid. Available at: www.seleniumhq.org/projects/grid} and TestNG\footnote{TestNG. Available at: www.testng.org}. Lastly, the tool that allows running tests completely was the TestNG and therefore it was chosen to perform load testing with Selenium. TestNG is a framework commonly used to automate testing with Selenium~\cite{bindal2014test}. The TestNG has a notation that allow to set the number of times the test must be performed and the number of threads, in that way is possible to simulate the execution of several threads simultaneously. Load testing using Selenium and TestNG consist primarily of the code that simulates the user running with the application, similar to that used in functional testing, and annotation in TestNG format.
-
-
-%Por padrao, cada execuçao do teste com o Selenium abre uma nova janela no browser selecionado (neste caso, o Mozilla Firefox \footnote{Mozilla Firefox. Available at: www.mozilla.org/pt-BR/firefox/.}), o que pode dificultar a execuçao do teste com um grande numero de usuarios virtuais. Assim, alem de utilizar os codigos gerados com o Selenium e a ferramenta TestNG para realizar os testes, foi utilizado um Virtual Frame Buffer \footnote{XVFB - X Virtual Frame Buffer. Available at: http://www.x.org/archive/X11R7.6/doc/man/man1/Xvfb.1.xhtml.} para permitir que o browser execute o teste sem abrir uma nova janela. 
-By default, each test execution with Selenium opens a new window in the selected browser (in this case, Mozilla Firefox \footnote{Mozilla Firefox Available at: www.mozilla.org/pt-BR/firefox/}), the which can hinder test execution with a large number of virtual users. So in addition to using codes generated with Selenium and TestNG tool to perform the tests, was used a Virtual Frame Buffer \footnote{XVFB - X Virtual Frame Buffer. Available at: http://www.x.org/archive/X11R7.6/doc/man/man1/Xvfb.1.xhtml.} to allow the browser to perform the test without opening a new window.
-
-
-%O teste de carga utilizando o Selenium consiste de basicamente quatro etapas: capturar a interação do usuário com a aplicação através do Selenium, criar o método de teste utilizando o código gerado com o Selenium e a anotação do TestNG, configurar o Firefox e executar o teste. Algumas alterações podem ser necessárias no código gerado pelo Selenium dependendo de quais elementos são utilizados na página.
-Load testing using Selenium consists of basically four stages: capture user interaction with the application through Selenium, create the test method using the code generated from the Selenium and TestNG annotation, configure Firefox and run the test. Some changes may be required in the code generated by Selenium depending on which elements are used on the page.
-
-\begin{figure}[ht]
-\centering
-\includegraphics[width=0.9\textwidth]{figuras/codigoCargaSelenium.png}
-\caption{Selenium Load Test Source Code}
-\label{fig:codigoCargaSelenium}
-\end{figure}
-
-
-%Para a execuçao dos testes, o codigo capturado pelo Selenium foi reaproveitado do teste funcional e apenas foi necessario inserir a anotaçao do TestNG e o codigo referente ao Virtual Frame Buffer. Uma parte do codigo relativo a execuçao do teste de carga na primeira tarefa do processo simulando 200 usuarios virtuais pode ser visto na Figura X.
-For the tests, the code captured by Selenium functional test was reused and it was only necessary to insert the annotation of TestNG and the code of the Virtual Frame Buffer. A part of the load test code simulating 200 virtual users in the first task of the process can be seen in Figure \ref{fig:codigoCargaSelenium}. It was possible to run the load test using the code obtained in Selenium combined with TestNG. With this test, we were able to analyse the performance of two versions of the both BPMS tools. In Table \ref{tab:foiPossivelCarga} may have seen an overview about which load tests could be performed. 
-
-\begin{table}
-\centering
-%{\scriptsize
-\begin{tabular}{p{3cm}|p{3cm}|p{3cm}}
-\hline
-BPMS and version & Load Test with JMeter & Load Test with Selenium and TestNG \\\hline
-Bonita 5.7.2 & Able to run the test & Able to run the test \\\hline
-Bonita 7.1.2 & Unable to run the test & Able to run the test \\\hline
-Activiti 5.14 & Unable to run the test & Able to run the test \\\hline
-Activiti 5.19 & Unable to run the test & Able to run the test \\\hline
-\end{tabular}
-%}
-\caption{Overview of the load tests}
-\label{tab:foiPossivelCarga}
-\end{table}
-
-\subsubsection{Load Test Results}
-
-Due to problems reported in the previous section, load tests with JMeter could only be achieved in the implementation created with the version 5.7.2 of Bonita. In order to test the system behaviour with different load levels, tests were performed with 1, 50, 100 and 200 virtual users and were analysed requests regarding the essential steps to begin the process: Login, view the Bonita's homepage, select the process, show the first form and send the completed form. %The application is hosted on a SGI Altix XE 210 server with 24GB of RAM, accessible by a Fast Ethernet network.
+Due to problems reported in the previous section, load tests with JMeter could only be executed in the application created with the version 5.7.2 of Bonita. In order to test the system performance with different load levels, tests were performed with 1, 50, 100 and 200 virtual users and were analysed requests regarding the essential steps to begin the process: Login, view the Bonita's homepage, select the process, show the first form and send the completed form. %The application is hosted on a SGI Altix XE 210 server with 24GB of RAM, accessible by a Fast Ethernet network.
 
 The response times of each stage, depending on the number of users, can be seen in Table \ref{tab:resultadoCarga}. The most alarming results are for 200 virtual users, where the average response time on the login request was for 6.930 ms, or approximately 6 seconds, which is a high response time. The average response time for all requests in the test with 200 virtual users was 2.903 ms (i.e., 3 s). Besides high response times, the test showed virtual users 200 with error rates in some requests which were not found with a smaller number of users. For example, a request that has performed login showed a error rate of 1.99\% and, in total, the requests have obtained an error rate of 6.98\%. The errors occurred because of unanswered requests.
 
@@ -351,17 +279,51 @@ Users & Login & Home Page & Process selection & First form & Send form\\\hline
 \label{tab:resultadoCarga}
 \end{table}
 
+Overall, the load testing with JMeter helps explain the overload that occurred with the application in production, when many students tried to access the initial form in a deadline, mainly because the test with 200 users has created a charge that led some pages to stop responding. However, it is important to note that this test was performed only in the early stages of the process and, even then, was already laborious and consumed a few hours of preparation, because it requires a deep analysis of HTTP requests to run the tests successfully. In all, about 100 requests were captured only in these steps, therefore it is estimated that the testing of a task towards the end of the process can become unwieldy with JMeter, it demands the identification and interpretation of many requests. Another important observation in this experiment is that this testing approach suffers from dependence on Web technologies (\emph{iframes}, Ajax) used by BPMS, therefore, the four versions tested in only one of them it was possible to conduct the test successfully and this was mainly due to how the BPMS are implemented.
 
-%De forma geral, portanto, o teste de carga com JMeter atingiu seus objetivos e ajuda a explicar a sobrecarga que ocorreu com a aplicação em produção, quando muitos alunos tentaram acessar o formulário inicial numa data limite. No entanto, é importante ressaltar que este teste foi executado apenas em etapas iniciais do processo e, mesmo assim, já foi trabalhoso e consumiu algumas horas de preparação, por exigir uma análise profunda das requisições HTTP para executar os testes com sucesso. Ao todo, foram capturadas cerca de 100 requisições só nestas etapas, portanto estima-se que o teste de uma tarefa mais ao final do processo possa se tornar inviável com JMeter, por demandar a identificação e interpretação de muitas requisições. Outra observação importante, nesta experiência, é que esta abordagem de teste sofre com a dependência das tecnologias Web empregadas pelo BPMS. %pois, das quatro versoes testadas, em apenas uma delas foi possivel realizar o teste com sucesso e isso ocorreu principalmente devido a forma como os BPMS sao implementados
 
-Overall, the load testing with JMeter helps explain the overload that occurred with the application in production, when many students tried to access the initial form in a deadline, mainly because the test with 200 users has created a charge that led some pages to stop responding. However, it is important to note that this test was performed only in the early stages of the process and, even then, was already laborious and consumed a few hours of preparation, because it requires a deep analysis of HTTP requests to run the tests successfully. In all, about 100 requests were captured only in these steps, therefore it is estimated that the testing of a task towards the end of the process can become unwieldy with JMeter, it demands the identification and interpretation of many requests. Another important observation in this experiment is that this testing approach suffers from dependence on Web technologies used by BPMS, therefore, the four versions tested in only one of them it was possible to conduct the test successfully and this was mainly due to how the BPMS are implemented.
+\subsection{Load Tests with Selenium and TestNG}
+As the functional tests with Selenium were successful executed in all tested versions of both tools, unlike load test with JMeter, it was decided to verify the existence of a way to perform some kind of load testing through the information obtained from the Selenium that could be less dependent on Web technologies used by BPMS. In this test was evaluated the behaviour only of the execution of the first task of the process.
 
-%teste de carga com selenium + testng
-On the other hand, in the load test performed with Selenium and TestNG all versions of the tools could be successfully tested. These tests were also performed simulating 1, 50, 100 and 200 virtual users/threads but, because it is a load test conducted in a different way of JMeter (without HTTP requests) could not be analysed on isolated results of each request or the response time. At the end of the test run, the TestNG generate reports that display the time that each execution (each thread) took to complete and total test execution time. 
+To perform the load tests with Selenium were analysed and tested different tools such as: Browser Mob\footnote{Browser Mob Proxy. Available at: www.bmp.lightbody.net}, JMeter WebDriver Sampler\footnote{JMeter WebDriver Sampler Plugin. Available at: www.jmeter-plugins.org/wiki/WebDriverSampler}, Selenium Grid\footnote{Selenium Grid. Available at: www.seleniumhq.org/projects/grid} and TestNG\footnote{TestNG. Available at: www.testng.org}. Lastly, the tool that allows running tests completely was the TestNG and therefore it was chosen to perform load testing with Selenium. TestNG is a framework commonly used to automate testing with Selenium~\cite{bindal2014test}. The TestNG has a notation that allow to set the number of times the test must be performed and the number of threads, in that way is possible to execute several threads simultaneously. Load testing using Selenium and TestNG consist primarily of the code that simulates the user running with the application, similar to that used in functional testing, and annotation in TestNG format.
 
-In the execution time is included the time of the entire interaction with the application, since this is effectively executed by each thread, different from test with JMeter where the requests are simulated and the response time is measured. For example, the average execution time of each thread in all of the tools tested and for any amount of threads was the same: about 14s. Thus, it is impossible to compare the runtime with the response time obtained in JMeter because it reflects more about client behaviour than server.
+By default, each thread in the test execution with Selenium opens a new window in the selected browser (in this case, Mozilla Firefox \footnote{Mozilla Firefox Available at: www.mozilla.org/pt-BR/firefox/}), i.e., 100 threads are equal 100 new browser windows. Also, each window open by the browser takes a while to be loaded which can increase the total time to run the test and so can make it difficult to run a test with a large number of users due to very long time to run the test and also memory problems the machine that runs the script.
 
-However, it was possible to analyse the server behaviour front a large number of simultaneous accesses from other types of information. In tests with 200 threads, for example, some threads have failed due to pages that have stopped responding, the only test that returns no errors in this case was the test with the Activiti tool in version 19.5. The server logs were also observed some errors in the lack of response. This behaviour is similar to what happened with testing with JMeter. In the Table \ref{tab:resultadoCargaSelenium} can be seen in the summary of server behavior for each tool and for each number of virtual users/threads.
+To avoid this problem, in addition to using codes generated with Selenium and TestNG tool to perform the tests, was used a Virtual Frame Buffer \footnote{XVFB - X Virtual Frame Buffer. Available at: http://www.x.org/archive/X11R7.6/doc/man/man1/Xvfb.1.xhtml.} to allow the browser to perform the test without opening a new window for each thread.
+
+Load testing using Selenium consists of basically four stages: capture user interaction with the application through Selenium, create the test method using the code generated from the Selenium and TestNG annotation, configure Firefox and run the test. Some changes may be required in the code generated by Selenium depending on which elements are used on the page.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.9\textwidth]{figuras/codigoCargaSelenium.png}
+\caption{Selenium Load Test Source Code}
+\label{fig:codigoCargaSelenium}
+\end{figure}
+
+For the tests, the code captured by Selenium functional test was reused and it was only necessary to insert the annotation of TestNG and the code of the Virtual Frame Buffer. A part of the load test code simulating 200 virtual users in the first task of the process can be seen in Figure \ref{fig:codigoCargaSelenium}. It was possible to run the load test using the code obtained in Selenium combined with TestNG. With this test, we were able to analyse the performance of two versions of the both BPMS tools. In Table \ref{tab:foiPossivelCarga} may have seen an overview about which load tests could be performed compared to tests performed with jmeter. 
+
+\begin{table}
+\centering
+%{\scriptsize
+\begin{tabular}{p{3cm}|p{3cm}|p{3cm}}
+\hline
+BPMS and version & Load Test with JMeter & Load Test with Selenium and TestNG \\\hline
+Bonita 5.7.2 & Able to run the test & Able to run the test \\\hline
+Bonita 7.1.2 & Unable to run the test & Able to run the test \\\hline
+Activiti 5.14 & Unable to run the test & Able to run the test \\\hline
+Activiti 5.19 & Unable to run the test & Able to run the test \\\hline
+\end{tabular}
+%}
+\caption{Overview of the load tests}
+\label{tab:foiPossivelCarga}
+\end{table}
+
+\subsubsection{Test results with Selenium and TestNG}
+In the load test performed with Selenium and TestNG all versions of the tools could be successfully tested. These tests were also performed simulating 1, 50, 100 and 200 virtual users/threads but, because it is a load test conducted in a different way of JMeter (without HTTP requests) could not be analysed on isolated results of each request or the response time. At the end of the test run, the TestNG generate reports that display the time that each execution (each thread) took to complete and total test execution time. 
+
+In the execution time is included the time of the entire interaction with the application, since this is effectively executed by each thread, different from test with JMeter where the requests are simulated and the response time is measured. For example, the average execution time of each thread in all of the tools tested and for any amount of threads was the same: about 14s. Thus, it is impossible to compare the runtime with the response time obtained in JMeter because it reflects the time that the script itself takes to be processed.
+
+However, it was possible to analyse the server behaviour (not performance) front a large number of simultaneous accesses from other types of information. In tests with 200 threads, for example, some threads have failed due to pages that have stopped responding. The server logs were also observed some errors in the lack of response. This behaviour is similar to what happened with testing with JMeter. In the Table \ref{tab:resultadoCargaSelenium} can be seen in the summary of server behavior for each tool and for each number of virtual users/threads.
 
 \begin{table}
 %{\scriptsize
@@ -379,8 +341,16 @@ Users & Bonita 5.7.2 & Bonita 7.1.2 & Activiti 5.14 & Activiti 5.19 \\\hline
 \label{tab:resultadoCargaSelenium}
 \end{table}
 
-Thus, it can be said that the load test with TestNG achieved its objectives because it was useful to simulate a large number of users performing actions in the system simultaneously and experienced similar behaviour to what was observed in tests with JMeter. The approach using TestNG and Selenium has the advantage of being possible to carry out tests on all the tools analysed, showing that it is not dependent on the tool structure. However, as observed in other tests, the task of running the tests can become cumbersome if you need to test many tasks or many process flows. This approach also has the advantage of being able to reuse code created in the functional test, which allows shorten test creation.
+Thus, it can be said that the load test with TestNG achieved its objectives because it was useful to simulate a large number of users performing actions in the system simultaneously and experienced similar behaviour to what was observed in tests with JMeter. Regarding the load test with JMeter testing using Selenium and TestNG have some disadvantages: the cost to run the test is higher because each thread is actually performed on the machine that runs the tests, this cost is somewhat mitigated by the use of a Virtual Frame Buffer; the test takes longer to run; it is not possible to measure the performance/response time (can only be analysed through the behaviour of server information).
 
+On the other hand, the approach using TestNG and Selenium has the advantage of being possible to carry out tests on all the tools analysed, showing that it is not dependent on the tool structure, different from what was observed in the test with JMeter. This approach can be useful when used BPMS which have much client-side processing and use technologies such as Ajax, for example, which can not be correctly processed by the requests captured with JMeter.
+
+Also, as observed in other tests, the task of running the tests can become cumbersome if you need to test many tasks or many process flows. This approach also has the advantage of being able to reuse code created in the functional test, which allows shorten test creation.
+%principalmnete em ferramentas que possuem muito processamnete do lado cliente (servidor o jmeter pega)
+%It is impossible for me to use this kind of test since it doesn't simulate ajax so well + I want to make a simulator that I don't need to maintaince too much, o uso de do 
+%simular o que um usuario veria em alto trafico...?
+
+%\section{Related Work}
 
 \section{Considerações Finais}\label{s:conclu}
 %revisar aqui
@@ -394,6 +364,11 @@ In the Functional test, with the approach taken, it obtained greater success in 
 
 Regarding the load test with JMeter, it was useful to explain failures observed in previous work with the application created with Bonita 5.7.2. Also proved to be a laborious test, or even impossible, depending on the BPMS used. Experience with two different versions of two BPMS strengthened this conclusion because there were different situations, with Bonita in version 5.7.2 the test was successful, but with the others tools the test could not be executed, since it failed to reproduce all requests. On the other hand, the load test performed with Selenium and TestNG enabled all analysed tools to be tested, making it a good alternative for load test.
 %Os valores obtidos.. compara com o jmeter
+%Thus, it can be said that the load test with TestNG achieved its objectives because it was useful to simulate a large number of users performing actions in the system simultaneously and experienced similar behaviour to what was observed in tests with JMeter. Regarding the load test with JMeter testing using Selenium and TestNG have some disadvantages: the cost to run the test is higher because each thread is actually performed on the machine that runs the tests, this cost is somewhat mitigated by the use of a Virtual Frame Buffer; the test takes longer to run; it is not possible to measure the performance/response time (can only be analysed through the behaviour of server information).
+%
+%On the other hand, the approach using TestNG and Selenium has the advantage of being possible to carry out tests on all the tools analysed, showing that it is not dependent on the tool structure, different from what was observed in the test with JMeter. This approach can be useful when used BPMS which have much client-side processing and use technologies such as Ajax, for example, which can not be correctly processed by the requests captured with JMeter.
+%
+%Also, as observed in other tests, the task of running the tests can become cumbersome if you need to test many tasks or many process flows. This approach also has the advantage of being able to reuse code created in the functional test, which allows shorten test creation.
 
 %De modo geral, a experiência mostrou que, sob certas condições, é viável testar aplicações de BPMS com ferramentas de teste para sistemas Web. A principal condição, no caso considerado, foi o direcionamento dos testes a uma tarefa inicial do processo, identificada como gargalo. Como o tempo e esforço para uma única tarefa foi significativo, essa abordagem pode se tornar inviável caso seja necessário aumentar a cobertura dos testes.
 
