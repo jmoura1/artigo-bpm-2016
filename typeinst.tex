@@ -350,9 +350,19 @@ Also, as observed in other tests, the task of running the tests can become cumbe
 %It is impossible for me to use this kind of test since it doesn't simulate ajax so well + I want to make a simulator that I don't need to maintaince too much, o uso de do 
 %simular o que um usuario veria em alto trafico...?
 
-%\section{Related Work}
+\section{Related Work}
+A few studies that address applications created using BPM test systems were found. Recent work by Ferme et al.~\cite{bpmbenchmarking} analyzes the performance, through a framework, of two Workflow Management Systems tools or \emph{WfMSs}, and Workflow Management or \emph{WfM} tools relate BPM tools so that BPM can be considered an extension of the classical WfM systems and approaches ~\cite{wfm}, is also mentioned the importance of evaluate systems, but in this case focusing on help in choosing the best tool. The names of the analyzed tools are not mentioned, but is mentioned that the tools also use BPMN 2.0 notation and this factor eventually made the benchmark process challenging.
 
-\section{Considerações Finais}\label{s:conclu}
+%While the complexity of BPMN2 makes it challenging to benchmark the performance of the WfMSs implementing it, the benefits of doing so are evident.
+
+%Existem vários trabalhos que avaliam/testam a conformidade dos modelos dos processos ~\cite{conformancetesting} ou comparam diversas ferramentas BPM baseados nas suas características
+%ou avaliam ferramentas baseados nas suas caracteristicas ~\cite{comparingbpms} sendo estes últimos voltados para dar suporte às organizaçõesn a escolha do BPMS ideal. Estes trabalhos não se relacionam com o nosso pois o foco do nosso trabalho é verificar a performance e o comportamento dos sistemas criados utilizados BPM frente a diferentes situações.
+There are several studies that assess/test compliance of models of processes ~\cite{conformancetesting} 
+or evaluate tools based on their features ~\cite{comparingbpms} latter being directed to support organizations choosing the ideal BPMS. These works do not relate to our as the focus of our work was to explore solutions for automated testing of a process implemented in BPMS.
+
+%The main goal of the comparisons and evaluations is to provide support for organizations to identify BPMS (Business Process Management System) solutions most appropriate to their needs. 
+
+\section{Final Considerations}\label{s:conclu}
 %revisar aqui
 %conclusao, esperar resultados do jmeter
 %Neste trabalho, explorou-se soluções de teste automatizado em uma aplicação de BPMS. Na ausência de suporte a testes de carga e funcionais nos BPMS Bonita e Activiti, aplicou-se ferramentas de teste voltadas a aplicações Web em geral. 
@@ -428,7 +438,7 @@ de Moura, J.L. and Charão, A.: Automação de Testes em Aplicações de BPMS: u
 Winter Green Research.: Business process management (BPM) cloud, mobile, and patterns: Market shares, strategies, and forecasts, worldwide, 2013 to 2019.
 
 \bibitem{swebok14}
-Bourque, P. e Fairley, R.~E.: Guide to the Software Engineering Body of Knowledge (SWEBOK), Version 3.0. IEEE Computer Society (2014)
+Bourque, P. and Fairley, R.~E.: Guide to the Software Engineering Body of Knowledge (SWEBOK), Version 3.0. IEEE Computer Society (2014)
 
 \bibitem{evoke} Chetty, N.~K.: How to perform workflow testing for BPM applications (2014), \url{http://www.evoketechnologies.com}
 
@@ -436,6 +446,20 @@ Bourque, P. e Fairley, R.~E.: Guide to the Software Engineering Body of Knowledg
 Bindal, P. and Gupta, S.: Test Automation Selenium WebDriver using TestNG. In {\em Journal of Engineering Computers \& Applied Sciences}, pp.
   18--40, (2014)
 
+\bibitem{bpmbenchmarking}
+Ferme, V. and Ivanchikj, A. and Pautasso, C.: A Framework for Benchmarking BPMN 2.0 Workflow Management Systems. In Business Process Management. In {\em Business Process Management }, pp.
+  251--259, (2015)
+  
+ \bibitem{wfm}
+Van Der Aalst, W. M.: Business process management demystified: A tutorial on models, systems and standards for workflow management. In {\em Lectures on concurrency and Petri nets }, pp.
+  1--65, (2004)
+  
+   \bibitem{conformancetesting}
+Rozinat, A., and van der Aalst, W. M.: Conformance testing: measuring the fit and appropriateness of event logs and process models. In {\em Business Process Management Workshops}, pp.
+  163--176, (2005)
+  
+   \bibitem{comparingbpms}
+Duarte Filho, N. F. and Silva, M. T. N. and Padua, C. I. P. : COMPARISON AND EVALUATION OF BPM TOOLS: FOCUS ON YOUR FEATURES. In {\em International Conference on Information Systems and Technology Management}, (2010)
 %\bibitem{myers}
 %Myers, G.~J. and Sandler, C.: The Art of Software Testing. John Wiley \& Sons, (2011)
 
