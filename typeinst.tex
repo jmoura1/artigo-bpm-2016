@@ -295,12 +295,12 @@ Load testing using Selenium consists of basically four stages: capture user inte
 
 \begin{figure}[ht]
 \centering
-\includegraphics[width=0.9\textwidth]{figuras/codigoCargaSelenium.png}
-\caption{Selenium Load Test Source Code}
+\includegraphics[width=0.9\textwidth]{figuras/codigo3.png}
+\caption{Selenium Load Test Source Code Fragment}
 \label{fig:codigoCargaSelenium}
 \end{figure}
 
-For the tests, the code captured by Selenium functional test was reused and it was only necessary to insert the annotation of TestNG and the code of the Virtual Frame Buffer. A part of the load test code simulating 200 virtual users in the first task of the process can be seen in Figure \ref{fig:codigoCargaSelenium}. It was possible to run the load test using the code obtained in Selenium combined with TestNG. With this test, we were able to analyse the performance of two versions of the both BPMS tools. In Table \ref{tab:foiPossivelCarga} may have seen an overview about which load tests could be performed compared to tests performed with jmeter. 
+For the tests, the code captured by Selenium functional test was reused and it was only necessary to insert the annotation of TestNG and the code of the Virtual Frame Buffer. A fragment of the code pf load test simulating 200 virtual users in the first task of the process can be seen in Figure \ref{fig:codigoCargaSelenium}. In this code, in the line represented by the number 1 is possible to see the TestNG annotation to run 200 threads, the beginning of the test method is in the line 2, in the lines 3 to 6 is performed the creation the Firefox browser driver using a Virtual Frame Buffer and from the line 10 is the code related to simulate the user interaction with the application (obtained through Selenium). It was possible to run the load test using the code obtained in Selenium combined with TestNG. With this test, we were able to analyse the performance of two versions of the both BPMS tools. In Table \ref{tab:foiPossivelCarga} may have seen an overview about which load tests could be performed compared to tests performed with jmeter. 
 
 \begin{table}
 \centering
