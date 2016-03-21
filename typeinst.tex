@@ -112,11 +112,13 @@ The BPM term can be used with different emphases, sometimes focusing on technolo
 
 %Os sistemas de BPM (BPMS) têm se afirmado como ferramentas essenciais para suporte a atividades desse ciclo de vida. Atualmente, pode-se dizer que um típico BPMS oferece recursos para definição e modelagem de processos em BPMN, controle da execução e monitoramento de atividades dos processos~\cite{forrester}. Há uma tendência dos BPMS em abreviar o desenvolvimento de software, por exemplo através de geradores de formulários Web associados a tarefas dos processos~\cite{greenresearch}. Nota-se, no entanto, que a preocupação com testes não fica evidente nas ferramentas BPMS. De fato, examinando-se o material promocional e a documentação disponível sobre os principais BPMS, observa-se uma ênfase em etapas de modelagem e execução.
 
-BPM systems (BPMS) has been claimed as essential tools to support the activities of this life cycle. Currently, it can be said that a typical BPMS provides resources for definition and process modelling in BPMN, execution control and activity monitoring of processes~\cite{forrester}. There is a tendency of BPMS in shortening software development, for example via web forms generators associated with process tasks~\cite{greenresearch}. Note, however, that the concern with testing is not evident in the BPMS tools. Indeed, examining the promotional material and documentation available on the main BPMS, there is an emphasis on modelling and execution stages.
+BPM systems (BPMS) has been claimed as essential tools to support the activities of this life cycle. Currently, it can be said that a typical BPMS provides resources for definition and process modelling in BPMN, execution control and activity monitoring of processes~\cite{forrester}. There is a tendency of BPMS in shortening software development, for example via web forms generators associated with process tasks~\cite{greenresearch}. Note, however, that the concern with testing of performance of applications is not evident in the BPMS tools. Indeed, examining the promotional material and documentation available on the main BPMS, there is an emphasis on modelling and execution stages. 
 
+There are some  studies that assess/test compliance of models of processes ~\cite{conformancetesting} 
+or evaluate tools based on their features ~\cite{comparingbpms} latter being directed to support organizations choosing the ideal BPMS. 
 
-%Por outro lado, a importância dos testes é amplamente reconhecida em engenharia de software~\cite{swebok14}. 
-%Considerando que aplicações de BPMS são geralmente sistemas baseados na Web, pode-se supor que sejam testadas com sucesso usando-se abordagens consagradas, como por exemplo testes de carga ou testes funcionais do tipo caixa-preta. Há também quem argumente que o teste de aplicações de BPM difira do teste de aplicações Web tradicionais~\cite{evoke}, porém não foram encontradas mais referências aprofundando esse ponto de vista. Essa constatação reforçou a motivação para o presente trabalho.
+A recent work by Ferme et al.~\cite{bpmbenchmarking} analyzes the performance, through a framework, of two Workflow Management Systems tools or \emph{WfMSs}, and Workflow Management or \emph{WfM} tools relate BPM tools so that BPM can be considered an extension of the classical WfM systems and approaches ~\cite{wfm}, is also mentioned the importance of evaluate systems, but in this case focusing on help in choosing the best tool. %The names of the analyzed tools are not mentioned, but is mentioned that the tools also use BPMN 2.0 notation and this factor eventually made the benchmark process challenging.
+
 Moreover, the importance of the tests is widely recognized in software engineering ~\cite{swebok14}. 
 Whereas BPMS applications are usually Web-based systems, it can be assumed that it can be successfully tested using dedicated approaches, such as load tests or functional testing of the black-box type. There are also those who argue that BPM applications test differs from traditional Web applications testing~\cite{evoke}, but there were no more references to deepen this view. This finding reinforced the motivation for this work. 
 
@@ -168,7 +170,7 @@ Thus, there was a survey of tools intended for Web application testing and was s
 
 %Para executar testes funcionais em aplicações Web, pode-se utilizar ferramentas livres como Selenium\footnote{Selenium. Available at: www.seleniumhq.org.}, Watir\footnote{Watir. Available at: www.watir.com.} ou Geb\footnote{Geb. Available at: www.gebish.org.}. Para este trabalho, escolheu-se a ferramenta Selenium, aliada ao Cucumber-JVM\footnote{Cucumber-JVM. Available at: www.github.com/cucumber/cucumber-jvm.} para descrição dos testes. A escolha foi motivada pelo grande número de referências ao Selenium na Web, confirmadas por um trabalho que apresentou resultados satisfatórios com Selenium e Cucumber~\cite{sbqs2013}.
 
-To perform functional tests on Web applications, you can use free tools like Selenium\footnote{Selenium. Available at: www.seleniumhq.org.}, Watir\footnote{Watir. Available at: www.watir.com.} or Geb\footnote{Geb. Available at: www.gebish.org.}. For this work, we picked up the Selenium tool that is an integrated development environment for automated test scripts, it is implemented as a Firefox extension, and allows to record, edit, and debug tests. Also, combined with Selenium, we picked up the Cucumber-JVM tool \footnote{Cucumber-JVM. Available at: www.github.com/cucumber/cucumber-jvm.} for a description of the tests, Cucumber is a tool that provides a high-level interface that allows to write tests in natural language. The choice was motivated by the large number of references to the Selenium ~\cite{testautomationframework, automatingfunctionaltests}, confirmed by works which showed satisfactory results with Selenium and Cucumber ~\cite{cucumberandselenium,sbqs2013}.
+To perform functional tests on Web applications, you can use free tools like Selenium\footnote{Selenium. Available at: www.seleniumhq.org.}, Watir\footnote{Watir. Available at: www.watir.com.} or Geb\footnote{Geb. Available at: www.gebish.org.}. For this work, we picked up the Selenium tool that is an integrated development environment for automated test scripts, it is implemented as a Firefox extension, and allows to record, edit, and debug tests. Also, combined with Selenium, we picked up the Cucumber-JVM\footnote{Cucumber-JVM. Available at: www.github.com/cucumber/cucumber-jvm.} tool for a description of the tests, Cucumber is a tool that provides a high-level interface that allows to write tests in natural language. The choice was motivated by the large number of references to the Selenium ~\cite{testautomationframework,automatingfunctionaltests}, confirmed by works which showed satisfactory results with Selenium and Cucumber~\cite{cucumberandselenium,sbqs2013}.
 
 %Com estas ferramentas, o processo para a execução de um teste funcional é composto de: captura da interação do usuário com o navegador (Selenium IDE), exportação do código gerado (Selenium IDE), criação do cenário de teste (Cucumber), criação das definições dos passos do teste (Cucumber), criação dos métodos para cada passo (Java) e execução do teste (Selenium WebDriver). O cenário de teste é a definição, em ordem de execução, dos passos que são executados na aplicação, bem como dos resultados esperados. Para este trabalho, definiu-se um cenário em que o aluno faz login e preenche 2 formulários referentes à primeira tarefa do processo e após isso um outro usuário faz o login e executa a segunda tarefa do processo disponibilizada para ele. Para este cenário, foram criados métodos variando as entradas nos formulários. Como o processo testado é o mesmo em todos os BPMS, o cenário de teste também é o mesmo. 
 
@@ -329,7 +331,7 @@ In the load test performed with Selenium and TestNG all versions of the tools co
 
 In the execution time is included the time of the entire interaction with the application, since this is effectively executed by each thread, different from test with JMeter where the requests are simulated and the response time is measured. For example, the average execution time of each thread in all of the tools tested and for any amount of threads was the same: about 14s. Thus, it is impossible to compare the runtime with the response time obtained in JMeter because it reflects the time that the script itself takes to be processed.
 
-However, it was possible to analyse the server behavior (not performance) front a large number of simultaneous accesses from other types of information. In tests with 200 threads, for example, some threads have failed due to pages that have stopped responding. The server logs were also observed some errors in the lack of response. This behavior is similar to what happened with testing with JMeter. In the Table \ref{tab:resultadoCargaSelenium} can be seen in the summary of server behavior for each tool and for each number of virtual users/threads.
+However, it was possible to analyse the application behavior (not performance) front a large number of simultaneous accesses from other types of information. In tests with 200 threads, for example, some threads have failed due to pages that have stopped responding. The server logs were also observed some errors in the lack of response. This behavior is similar to what happened with testing with JMeter. In the Table \ref{tab:resultadoCargaSelenium} can be seen in the summary of application behavior for each tool and for each number of virtual users/threads.
 
 \begin{table}
 %{\scriptsize
@@ -343,7 +345,7 @@ Users & Bonita 5.7.2 & Bonita 7.1.2 & Activiti 5.14 & Activiti 5.19 \\\hline
 200 & Some failure & Some failure & Some failure & Some failure \\\hline
 \end{tabular}
 %}
-\caption{Summary of server behavior}
+\caption{Summary of application behavior}
 \label{tab:resultadoCargaSelenium}
 \end{table}
 
@@ -355,18 +357,18 @@ Also, as observed in other tests, the task of running the tests can become cumbe
 %principalmnete em ferramentas que possuem muito processamnete do lado cliente (servidor o jmeter pega)
 %It is impossible for me to use this kind of test since it doesn't simulate ajax so well + I want to make a simulator that I don't need to maintaince too much, o uso de do 
 %simular o que um usuario veria em alto trafico...?
-
-\section{Related Work}
-A few studies that address applications created using BPM test systems were found. Recent work by Ferme et al.~\cite{bpmbenchmarking} analyzes the performance, through a framework, of two Workflow Management Systems tools or \emph{WfMSs}, and Workflow Management or \emph{WfM} tools relate BPM tools so that BPM can be considered an extension of the classical WfM systems and approaches ~\cite{wfm}, is also mentioned the importance of evaluate systems, but in this case focusing on help in choosing the best tool. The names of the analyzed tools are not mentioned, but is mentioned that the tools also use BPMN 2.0 notation and this factor eventually made the benchmark process challenging.
-
-%While the complexity of BPMN2 makes it challenging to benchmark the performance of the WfMSs implementing it, the benefits of doing so are evident.
-
-%Existem vários trabalhos que avaliam/testam a conformidade dos modelos dos processos ~\cite{conformancetesting} ou comparam diversas ferramentas BPM baseados nas suas características
-%ou avaliam ferramentas baseados nas suas caracteristicas ~\cite{comparingbpms} sendo estes últimos voltados para dar suporte às organizaçõesn a escolha do BPMS ideal. Estes trabalhos não se relacionam com o nosso pois o foco do nosso trabalho é verificar a performance e o comportamento dos sistemas criados utilizados BPM frente a diferentes situações.
-There are several studies that assess/test compliance of models of processes ~\cite{conformancetesting} 
-or evaluate tools based on their features ~\cite{comparingbpms} latter being directed to support organizations choosing the ideal BPMS. These works do not relate to our as the focus of our work was to explore solutions for automated testing of a process implemented in BPMS.
-
-%The main goal of the comparisons and evaluations is to provide support for organizations to identify BPMS (Business Process Management System) solutions most appropriate to their needs. 
+%
+%\section{Related Work}
+%A few studies that address applications created using BPM test systems were found. Recent work by Ferme et al.~\cite{bpmbenchmarking} analyzes the performance, through a framework, of two Workflow Management Systems tools or \emph{WfMSs}, and Workflow Management or \emph{WfM} tools relate BPM tools so that BPM can be considered an extension of the classical WfM systems and approaches ~\cite{wfm}, is also mentioned the importance of evaluate systems, but in this case focusing on help in choosing the best tool. The names of the analyzed tools are not mentioned, but is mentioned that the tools also use BPMN 2.0 notation and this factor eventually made the benchmark process challenging.
+%
+%%While the complexity of BPMN2 makes it challenging to benchmark the performance of the WfMSs implementing it, the benefits of doing so are evident.
+%
+%%Existem vários trabalhos que avaliam/testam a conformidade dos modelos dos processos ~\cite{conformancetesting} ou comparam diversas ferramentas BPM baseados nas suas características
+%%ou avaliam ferramentas baseados nas suas caracteristicas ~\cite{comparingbpms} sendo estes últimos voltados para dar suporte às organizaçõesn a escolha do BPMS ideal. Estes trabalhos não se relacionam com o nosso pois o foco do nosso trabalho é verificar a performance e o comportamento dos sistemas criados utilizados BPM frente a diferentes situações.
+%There are several studies that assess/test compliance of models of processes ~\cite{conformancetesting} 
+%or evaluate tools based on their features ~\cite{comparingbpms} latter being directed to support organizations choosing the ideal BPMS. These works do not relate to our as the focus of our work was to explore solutions for automated testing of a process implemented in BPMS.
+%
+%%The main goal of the comparisons and evaluations is to provide support for organizations to identify BPMS (Business Process Management System) solutions most appropriate to their needs. 
 
 \section{Final Considerations}\label{s:conclu}
 %revisar aqui
@@ -414,11 +416,35 @@ de~Moura, J.~L. et~al.: Gestão de processos de negócio em curso de sistemas de
 Forrester Research.: The forrester wave: {BPM} suites, {Q1} (2013)
 Graham, D. and Fewster, M.
 
+
+\bibitem{greenresearch}
+Winter Green Research.: Business process management (BPM) cloud, mobile, and patterns: Market shares, strategies, and forecasts, worldwide, 2013 to 2019.
+
+
+  
+   \bibitem{conformancetesting}
+Rozinat, A., and van der Aalst, W. M.: Conformance testing: measuring the fit and appropriateness of event logs and process models. In {\em Business Process Management Workshops}, pp.
+  163--176, (2005)
+  
+   \bibitem{comparingbpms}
+Duarte Filho, N. F. and Silva, M. T. N. and Padua, C. I. P. : COMPARISON AND EVALUATION OF BPM TOOLS: FOCUS ON YOUR FEATURES. In {\em International Conference on Information Systems and Technology Management}, (2010)
+%\bibitem{myers}
+%Myers, G.~J. and Sandler, C.: The Art of Software Testing. John Wiley \& Sons, (2011)
+\bibitem{bpmbenchmarking}
+Ferme, V. and Ivanchikj, A. and Pautasso, C.: A Framework for Benchmarking BPMN 2.0 Workflow Management Systems. In Business Process Management. In {\em Business Process Management }, pp.
+  251--259, (2015)
+  
+ \bibitem{wfm}
+Van Der Aalst, W. M.: Business process management demystified: A tutorial on models, systems and standards for workflow management. In {\em Lectures on concurrency and Petri nets }, pp.
+  1--65, (2004)
+
+\bibitem{swebok14}
+Bourque, P. and Fairley, R.~E.: Guide to the Software Engineering Body of Knowledge (SWEBOK), Version 3.0. IEEE Computer Society (2014)
+
+\bibitem{evoke} Chetty, N.~K.: How to perform workflow testing for BPM applications (2014), \url{http://www.evoketechnologies.com}
+
 \bibitem{testautomationframework}
 Wang, Fei, and Wencai Du.: A test automation framework based on web. In {\em 2012 IEEE/ACIS 11th International Conference on}, pp. 683-687, (2012).
-
-\bibitem{automatingfunctionaltests}
-Holmes, A., and Kellogg, M.: Automating functional tests using selenium. In {\em Agile Conference}, pp. 6-pp, (2006).
 
 \bibitem{automatingfunctionaltests}
 BOWERS, A. and BELL, J.: Automated testing with Selenium and Cucumber. In {\em Agile Conference}, pp. 6-pp, (2006).
@@ -433,34 +459,11 @@ Chiavegatto, R. et~al.: Especificação e automação colaborativas de testes ut
 de Moura, J.L. and Charão, A.: Automação de Testes em Aplicações de BPMS: um Relato de Experiência. In {\em XIV Simpósio Brasileiro de Qualidade de Software}, pp.
   212--219, (2015)
 
-\bibitem{greenresearch}
-Winter Green Research.: Business process management (BPM) cloud, mobile, and patterns: Market shares, strategies, and forecasts, worldwide, 2013 to 2019.
 
-\bibitem{swebok14}
-Bourque, P. and Fairley, R.~E.: Guide to the Software Engineering Body of Knowledge (SWEBOK), Version 3.0. IEEE Computer Society (2014)
-
-\bibitem{evoke} Chetty, N.~K.: How to perform workflow testing for BPM applications (2014), \url{http://www.evoketechnologies.com}
 
 \bibitem{bindal2014test}
 Bindal, P. and Gupta, S.: Test Automation Selenium WebDriver using TestNG. In {\em Journal of Engineering Computers \& Applied Sciences}, pp.
   18--40, (2014)
-
-\bibitem{bpmbenchmarking}
-Ferme, V. and Ivanchikj, A. and Pautasso, C.: A Framework for Benchmarking BPMN 2.0 Workflow Management Systems. In Business Process Management. In {\em Business Process Management }, pp.
-  251--259, (2015)
-  
- \bibitem{wfm}
-Van Der Aalst, W. M.: Business process management demystified: A tutorial on models, systems and standards for workflow management. In {\em Lectures on concurrency and Petri nets }, pp.
-  1--65, (2004)
-  
-   \bibitem{conformancetesting}
-Rozinat, A., and van der Aalst, W. M.: Conformance testing: measuring the fit and appropriateness of event logs and process models. In {\em Business Process Management Workshops}, pp.
-  163--176, (2005)
-  
-   \bibitem{comparingbpms}
-Duarte Filho, N. F. and Silva, M. T. N. and Padua, C. I. P. : COMPARISON AND EVALUATION OF BPM TOOLS: FOCUS ON YOUR FEATURES. In {\em International Conference on Information Systems and Technology Management}, (2010)
-%\bibitem{myers}
-%Myers, G.~J. and Sandler, C.: The Art of Software Testing. John Wiley \& Sons, (2011)
 
 
 \end{thebibliography}
